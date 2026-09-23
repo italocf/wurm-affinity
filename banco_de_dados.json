@@ -15,6 +15,14 @@
     {
       "name": "Oven",
       "value": 40
+    },
+    {
+      "name": "Oven (Rare)",
+      "value": 41
+    },
+    {
+      "name": "Oven (Supreme)",
+      "value": 42
     }
   ],
   "containers": [

@@ -356,6 +356,56 @@
             color: #fbbf24;
             border: 1px solid rgba(245, 158, 11, 0.4);
         }
+        .badge-purple {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+        }
+
+        /* Oven Rarity Selector */
+        .oven-tabs {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .oven-btn {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .oven-btn:hover {
+            color: var(--amber-main);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+        .oven-btn.active {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fde047;
+            border-color: var(--amber-main);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+        }
+        .oven-btn.rarity-rare.active {
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+            border-color: #3b82f6;
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+        }
+        .oven-btn.rarity-supreme.active {
+            background: rgba(168, 85, 247, 0.2);
+            color: #d8b4fe;
+            border-color: #a855f7;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
+        }
 
         /* Stats Row */
         .stats-row {
@@ -480,8 +530,8 @@
                 <h2>Sua Afinidade Atual no Teste Base</h2>
             </div>
 
-            <div class="info-pill">
-                💡 <strong>Teste Padrão:</strong> Forno (+40) + Frying Pan (+75) + Bear (+16) + Corn (+44) + Base (+3) = <strong>178</strong>
+            <div class="info-pill" id="test_info_pill">
+                💡 <strong>Teste Padrão:</strong> Forno (<span id="test_oven_val">+40</span>) + Frying Pan (+75) + Bear (+16) + Corn (+44) + Base (+3) = <strong id="test_total_val">178</strong>
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;">
@@ -490,6 +540,10 @@
                     <select id="calib_tasted_affinity" onchange="onTastedChange()">
                         <!-- Filled by JS with 138 skills -->
                     </select>
+                    <label style="font-size: 11px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; cursor: pointer;">
+                        <input type="checkbox" id="test_in_same_oven" onchange="onTastedChange()">
+                        <span>O prato de teste foi assado no mesmo forno (<span id="test_oven_name">Normal</span>)?</span>
+                    </label>
                 </div>
 
                 <div class="player-badge">
@@ -545,6 +599,35 @@
                 Ajuste os filtros abaixo para o gerador encontrar a receita ideal para o que você tem na sua despensa:
             </p>
 
+            <!-- SELETOR DE RARIDADE DO FORNO (OVEN) -->
+            <div style="margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid rgba(51, 65, 85, 0.6);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
+                    <span style="font-size: 12px; font-weight: 700; color: var(--amber-bright);">
+                        🔥 Raridade do Forno (Oven Cooker):
+                    </span>
+                    <span id="oven_desc_badge" style="font-size: 11px; color: var(--text-muted);">
+                        Forno normal (+40 de base)
+                    </span>
+                </div>
+                <div class="oven-tabs">
+                    <button type="button" class="oven-btn active" id="btn_oven_normal" onclick="setOvenRarity('normal')">
+                        <span>⚪</span>
+                        <span>Normal (+0) [Padrão]</span>
+                    </button>
+                    <button type="button" class="oven-btn rarity-rare" id="btn_oven_rare" onclick="setOvenRarity('rare')">
+                        <span>🔵</span>
+                        <span>Rara (+1)</span>
+                    </button>
+                    <button type="button" class="oven-btn rarity-supreme" id="btn_oven_supreme" onclick="setOvenRarity('supreme')">
+                        <span>🟣</span>
+                        <span>Suprema (+2)</span>
+                    </button>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+                    💡 <em>O forno Raro adiciona +1 e o Supremo adiciona +2 no cozimento. O gerador recalcula os ingredientes para a afinidade bater 100% exata!</em>
+                </div>
+            </div>
+
             <div class="options-grid">
                 <!-- Checkbox NÃO USAR FRIED -->
                 <label class="opt-toggle-box" for="opt_no_fried">
@@ -596,6 +679,7 @@
                         <span style="font-size: 10px; text-transform: uppercase; color: var(--amber-main); font-weight: 800; letter-spacing: 0.5px;">Receita Gerada</span>
                         <span class="badge-tag badge-blue">✓ Itens 100% Únicos</span>
                         <span id="badge_fried_status" class="badge-tag badge-green">✓ Sem Fried</span>
+                        <span id="badge_oven_status" class="badge-tag" style="background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3);">⚪ Forno Normal</span>
                     </div>
                     <h3 id="res_title" style="font-size: 24px; font-weight: 900; color: #fef08a; margin-top: 4px;">Moonshine para Sickle</h3>
                 </div>
@@ -728,6 +812,14 @@
         let selectedType = 'moonshine';
         let currentGeneratedRecipe = null;
 
+        // Oven Rarity Config
+        const OVEN_CONFIG = {
+            'normal': { label: "Oven (Forno Normal)", bonus: 0, desc: "Forno normal (+40 de base)" },
+            'rare': { label: "Oven Raro (+1)", bonus: 1, desc: "Forno raro (+41 de base, +1 bônus)" },
+            'supreme': { label: "Oven Supremo (+2)", bonus: 2, desc: "Forno supremo (+42 de base, +2 bônus)" }
+        };
+        let selectedOvenRarity = 'normal';
+
         function init() {
             const tastedSelect = document.getElementById('calib_tasted_affinity');
             const targetSelect = document.getElementById('target_affinity');
@@ -772,13 +864,40 @@
 
         function onTastedChange() {
             const tastedAffId = parseInt(document.getElementById('calib_tasted_affinity').value);
-            let p = (tastedAffId - FIXED_TEST_TOTAL) % 138;
+            const sameOven = document.getElementById('test_in_same_oven')?.checked;
+            const currentOvenBonus = OVEN_CONFIG[selectedOvenRarity]?.bonus || 0;
+            const currentTestTotal = sameOven ? (FIXED_TEST_TOTAL + currentOvenBonus) : FIXED_TEST_TOTAL;
+
+            const testOvenValEl = document.getElementById('test_oven_val');
+            if (testOvenValEl) testOvenValEl.innerText = sameOven ? `+${40 + currentOvenBonus}` : `+40`;
+            const testTotalValEl = document.getElementById('test_total_val');
+            if (testTotalValEl) testTotalValEl.innerText = `${currentTestTotal}`;
+
+            let p = (tastedAffId - currentTestTotal) % 138;
             if (p < 0) p += 138;
 
             playerNumber = p;
             document.getElementById('playerNumVal').innerText = playerNumber;
 
             generateAutomatically();
+        }
+
+        function setOvenRarity(rarity) {
+            selectedOvenRarity = rarity;
+            document.querySelectorAll('.oven-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById(`btn_oven_${rarity}`);
+            if (btn) btn.classList.add('active');
+
+            const ovenDesc = document.getElementById('oven_desc_badge');
+            if (ovenDesc) ovenDesc.innerText = OVEN_CONFIG[rarity]?.desc || '';
+
+            const testOvenName = document.getElementById('test_oven_name');
+            if (testOvenName) {
+                const names = { normal: 'Normal', rare: 'Raro (+1)', supreme: 'Supremo (+2)' };
+                testOvenName.innerText = names[rarity] || 'Normal';
+            }
+
+            onTastedChange();
         }
 
         function setType(type) {
@@ -860,10 +979,10 @@
 
             let result = null;
 
-            // Verified 100% accurate preset for Sickle (#41) on Player #19 (Blacksmithing test)
-            if (!forceRandom && targetId === 41 && playerNumber === 19 && selectedType === 'moonshine' && noFried && availableVeggies.length === 10) {
+            // Verified 100% accurate preset for Sickle (#41) on Player #19 (Blacksmithing test, Normal Oven)
+            if (!forceRandom && targetId === 41 && playerNumber === 19 && selectedType === 'moonshine' && noFried && availableVeggies.length === 10 && selectedOvenRarity === 'normal') {
                 result = {
-                    cooker: "Oven (Forno)",
+                    cooker: "Oven (Forno Normal)",
                     container: "Cauldron (Caldeirão)",
                     ingredients: [
                         { text: "Sugar (Açúcar) — Whole" },
@@ -877,12 +996,12 @@
                     total: 436
                 };
             }
-            // Verified 100% accurate preset for Large Maul (#65) on Player #25
-            else if (!forceRandom && targetId === 65 && playerNumber === 25 && selectedType === 'moonshine' && noFried && availableVeggies.length === 10) {
+            // Verified 100% accurate preset for Large Maul (#65) on Player #25 (Normal Oven)
+            else if (!forceRandom && targetId === 65 && playerNumber === 25 && selectedType === 'moonshine' && noFried && availableVeggies.length === 10 && selectedOvenRarity === 'normal') {
                 // Cabbage(42)+Carrot(41)+Corn(44+16)+Cucumber(17+16)+Onion(91+16) = 283 + base 171 = 454
                 // (454 + 25) % 138 = 65 (Large Maul) - VERIFIED
                 result = {
-                    cooker: "Oven (Forno)",
+                    cooker: "Oven (Forno Normal)",
                     container: "Cauldron (Caldeirão)",
                     ingredients: [
                         { text: "Sugar (Açúcar) — Whole" },
@@ -898,12 +1017,41 @@
             } else {
                 // Bug 6 fix: pass nonLettuceVeggies for salad so solver has correct list
                 const veggiesForSolver = (selectedType === 'salad') ? nonLettuceVeggies : availableVeggies;
-                result = solveRecipe(selectedType, targetId, playerNumber, veggiesForSolver, noFried, minCuts);
+                result = solveRecipe(selectedType, targetId, playerNumber, veggiesForSolver, noFried, minCuts, selectedOvenRarity);
             }
 
             if (!result) {
                 alert("Não encontramos uma combinação com esses filtros específicos. Tente desmarcar 'Priorizar Whole' ou marcar mais vegetais.");
                 return;
+            }
+
+            // Update Oven badge in result
+            const badgeOven = document.getElementById('badge_oven_status');
+            if (badgeOven) {
+                if (selectedType === 'salad') {
+                    badgeOven.style.display = 'none';
+                } else {
+                    badgeOven.style.display = 'inline-flex';
+                    if (selectedOvenRarity === 'rare') {
+                        badgeOven.className = 'badge-tag badge-blue';
+                        badgeOven.style.background = '';
+                        badgeOven.style.color = '';
+                        badgeOven.style.border = '';
+                        badgeOven.innerText = '🔵 Forno Raro (+1)';
+                    } else if (selectedOvenRarity === 'supreme') {
+                        badgeOven.className = 'badge-tag badge-purple';
+                        badgeOven.style.background = '';
+                        badgeOven.style.color = '';
+                        badgeOven.style.border = '';
+                        badgeOven.innerText = '🟣 Forno Supremo (+2)';
+                    } else {
+                        badgeOven.className = 'badge-tag';
+                        badgeOven.style.background = 'rgba(148, 163, 184, 0.15)';
+                        badgeOven.style.color = '#cbd5e1';
+                        badgeOven.style.border = '1px solid rgba(148, 163, 184, 0.3)';
+                        badgeOven.innerText = '⚪ Forno Normal';
+                    }
+                }
             }
 
             currentGeneratedRecipe = {
@@ -934,19 +1082,20 @@
             });
 
             const prepNote = document.getElementById('res_prep_note');
+            const ovenDisplayName = (selectedOvenRarity === 'rare') ? 'Oven Raro' : ((selectedOvenRarity === 'supreme') ? 'Oven Supremo' : 'Oven');
             if (selectedType === 'moonshine') {
-                prepNote.innerHTML = `💡 <strong>Modo de Preparo:</strong> Coloque o Cauldron no Oven, adicione Água, Açúcar e os vegetais cortados conforme a lista acima.`;
+                prepNote.innerHTML = `💡 <strong>Modo de Preparo:</strong> Coloque o Cauldron no ${ovenDisplayName}, adicione Água, Açúcar e os vegetais cortados conforme a lista acima.`;
             } else if (selectedType === 'meal') {
-                prepNote.innerHTML = `💡 <strong>Modo de Preparo:</strong> Coloque a Frying Pan no Oven, adicione a carne, os vegetais e a erva conforme indicado.`;
+                prepNote.innerHTML = `💡 <strong>Modo de Preparo:</strong> Coloque a Frying Pan no ${ovenDisplayName}, adicione a carne, os vegetais e a erva conforme indicado.`;
             } else if (selectedType === 'pizza') {
-                prepNote.innerHTML = `💡 <strong>Modo de Preparo:</strong> Monte a Pizza no Baking Stone dentro do Oven com a massa, molho, queijo e recheios.`;
+                prepNote.innerHTML = `💡 <strong>Modo de Preparo:</strong> Monte a Pizza no Baking Stone dentro do ${ovenDisplayName} com a massa, molho, queijo e recheios.`;
             } else {
                 prepNote.innerHTML = `💡 <strong>Modo de Preparo:</strong> Pique os vegetais e misture no Prato (Plate). Não precisa de fogo.`;
             }
         }
 
-        // UNIFIED SOLVER WITH OFFICIAL VERIFIED WURM FOOD SCORES
-        function solveRecipe(type, targetAff, pNum, veggiesList, noFried, minCuts) {
+        // UNIFIED SOLVER WITH OFFICIAL VERIFIED WURM FOOD SCORES & OVEN RARITY
+        function solveRecipe(type, targetAff, pNum, veggiesList, noFried, minCuts, ovenRarity = 'normal') {
             let preps = [{ name: "Whole (+0)", val: 0 }];
             if (!noFried) {
                 preps.push({ name: "Fried (+1)", val: 1 });
@@ -960,9 +1109,12 @@
                 return preps[Math.floor(Math.random() * preps.length)];
             }
 
+            const ovenBonus = (type === 'salad') ? 0 : (OVEN_CONFIG[ovenRarity]?.bonus || 0);
+            const cookerName = (type === 'salad') ? "None (Sem Fogão)" : (OVEN_CONFIG[ovenRarity]?.label || "Oven (Forno)");
+
             if (type === 'moonshine') {
-                // Oven(40) + Cauldron(75) + Sugar(47) + Water(6) + BaseRecipeBonus(3) = 171
-                const baseSum = 171;
+                // Oven(40 + ovenBonus) + Cauldron(75) + Sugar(47) + Water(6) + BaseRecipeBonus(3) = 171 + ovenBonus
+                const baseSum = 171 + ovenBonus;
 
                 const countsToTry = [5, 6, 7, 8].filter(c => c <= veggiesList.length);
 
@@ -980,7 +1132,7 @@
 
                     if ((sum + pNum) % 138 === targetAff) {
                         return {
-                            cooker: "Oven (Forno)",
+                            cooker: cookerName,
                             container: "Cauldron (Caldeirão)",
                             total: sum,
                             ingredients: [
@@ -992,8 +1144,8 @@
                     }
                 }
             } else if (type === 'meal') {
-                // Oven(40) + Frying Pan(75) + Base(3) = 118
-                const baseSum = 118;
+                // Oven(40 + ovenBonus) + Frying Pan(75) + Base(3) = 118 + ovenBonus
+                const baseSum = 118 + ovenBonus;
 
                 for (let i = 0; i < 35000; i++) {
                     const m = MEATS[Math.floor(Math.random() * MEATS.length)];
@@ -1007,7 +1159,7 @@
                     const sum = baseSum + m.val + mp.val + v1.val + p1.val + v2.val + p2.val + h.val;
                     if ((sum + pNum) % 138 === targetAff) {
                         return {
-                            cooker: "Oven (Forno)",
+                            cooker: cookerName,
                             container: "Frying Pan (Frigideira)",
                             total: sum,
                             ingredients: [
@@ -1020,8 +1172,8 @@
                     }
                 }
             } else if (type === 'pizza') {
-                // Oven(40) + Baking Stone(63) + Base(3) + Dough(52) + Passata(114) + Cheese(84) = 356
-                const baseSum = 356;
+                // Oven(40 + ovenBonus) + Baking Stone(63) + Base(3) + Dough(52) + Passata(114) + Cheese(84) = 356 + ovenBonus
+                const baseSum = 356 + ovenBonus;
 
                 for (let i = 0; i < 35000; i++) {
                     const m = MEATS[Math.floor(Math.random() * MEATS.length)];
@@ -1033,7 +1185,7 @@
                     const sum = baseSum + m.val + mp.val + v.val + vp.val + h.val;
                     if ((sum + pNum) % 138 === targetAff) {
                         return {
-                            cooker: "Oven (Forno)",
+                            cooker: cookerName,
                             container: "Baking Stone (Pedra de Assar)",
                             total: sum,
                             ingredients: [
