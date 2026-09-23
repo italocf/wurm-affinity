@@ -4,10 +4,11 @@ Calculadora offline e online para receitas de afinidade no **Wurm Online**. Gera
 
 ---
 
-## 🚀 Como Usar no Navegador (GitHub Pages)
+## 🌐 Acesse Online Gratuitamente
 
-Acesse diretamente pelo link do GitHub Pages (após ativar nas configurações do repositório):
-`https://<seu-usuario>.github.io/<nome-do-repositorio>/`
+👉 **[https://italocf.github.io/wurm-affinity/](https://italocf.github.io/wurm-affinity/)**
+
+*(Hospedado permanentemente no GitHub Pages com SSL/HTTPS ativo)*
 
 ---
 
@@ -26,4 +27,4 @@ Acesse diretamente pelo link do GitHub Pages (após ativar nas configurações d
 ## 🛠️ Executando Localmente
 
 1. Dê dois cliques em `Abrir_Calculadora.bat` (ou abra `index.html` diretamente em qualquer navegador).
-2. Para publicar uma nova versão online rapidamente, execute `Publicar_Online.bat`.
+2. Para publicar atualizações no GitHub, basta dar `git push`.
