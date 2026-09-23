@@ -230,37 +230,6 @@
             color: #fef08a;
         }
 
-        /* Recipe Type Selector */
-        .type-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 18px;
-            flex-wrap: wrap;
-        }
-        .type-btn {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-muted);
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .type-btn:hover {
-            color: var(--amber-main);
-            border-color: rgba(245, 158, 11, 0.4);
-        }
-        .type-btn.active {
-            background: rgba(245, 158, 11, 0.18);
-            color: #fde047;
-            border-color: var(--amber-main);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
-        }
 
         /* Options Box / Preferences */
         .options-card {
@@ -604,29 +573,8 @@
                 <h2 id="txt_step2_title">Qual Afinidade Você Precisa?</h2>
             </div>
 
-            <!-- Opções de Receita -->
-            <label id="txt_recipe_type_lbl" style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;">Tipo de Receita:</label>
-            <div class="type-tabs">
-                <button class="type-btn active" id="btn-moonshine" onclick="setType('moonshine')">
-                    <span>🌙</span>
-                    <span id="txt_btn_moonshine">Moonshine (Drink no Caldeirão)</span>
-                </button>
-                <button class="type-btn" id="btn-meal" onclick="setType('meal')">
-                    <span>🍳</span>
-                    <span id="txt_btn_meal">Refeição Quente</span>
-                </button>
-                <button class="type-btn" id="btn-pizza" onclick="setType('pizza')">
-                    <span>🍕</span>
-                    <span id="txt_btn_pizza">Pizza</span>
-                </button>
-                <button class="type-btn" id="btn-salad" onclick="setType('salad')">
-                    <span>🥗</span>
-                    <span id="txt_btn_salad">Salada</span>
-                </button>
-            </div>
-
             <div>
-                <label style="font-size: 14px;"><span id="txt_target_label_prefix">Selecione a afinidade que você quer no seu</span> <span id="label_recipe_type" style="color: #fef08a;">Moonshine</span>:</label>
+                <label style="font-size: 14px;" id="txt_target_label">Selecione a afinidade que você quer no seu Moonshine:</label>
                 <select id="target_affinity" onchange="generateAutomatically()" style="font-size: 16px; font-weight: 800; color: #fef08a; border-color: rgba(245, 158, 11, 0.6);">
                     <!-- Filled by JS -->
                 </select>
@@ -837,23 +785,9 @@
             { id: "tomato", namePt: "Tomato (Tomate)", nameEn: "Tomato", val: 43, active: true }
         ];
 
-        // Meats & Herbs (EXACT VERIFIED SCORES)
-        const MEATS = [
-            { namePt: "Bear Meat (Carne de Urso)", nameEn: "Bear Meat", val: 16 },
-            { namePt: "Beef (Carne Bovina)", nameEn: "Beef", val: 17 },
-            { namePt: "Pork (Carne Suína)", nameEn: "Pork", val: 28 }
-        ];
-        const HERBS = [
-            { namePt: "Basil (Manjericão)", nameEn: "Basil", val: 95 },
-            { namePt: "Fennel (Funcho)", nameEn: "Fennel", val: 39 },
-            { namePt: "Oregano (Orégano)", nameEn: "Oregano", val: 93 },
-            { namePt: "Rosemary (Alecrim)", nameEn: "Rosemary", val: 99 }
-        ];
-
         // Fixed Test Meal Total: Oven (40) + Frying Pan (75) + Bear (16) + Corn (44) + base (3) = 178
         const FIXED_TEST_TOTAL = 178;
         let playerNumber = 25;
-        let selectedType = 'moonshine';
         let currentGeneratedRecipe = null;
         let currentLang = 'pt'; // PT-BR default
 
@@ -909,8 +843,7 @@
                 same_oven_prefix: "O prato de teste foi assado no mesmo forno",
                 player_badge_lbl: "Seu Player Number",
                 step2_title: "Qual Afinidade Você Precisa?",
-                recipe_type_lbl: "Tipo de Receita:",
-                target_label_prefix: "Selecione a afinidade que você quer no seu",
+                target_label: "Selecione a afinidade que você quer no seu Moonshine:",
                 options_title: "Opções de Preparo & Ingredientes",
                 options_desc: "Ajuste os filtros abaixo para o gerador encontrar a receita ideal para o que você tem na sua despensa:",
                 oven_rarity_lbl: "🔥 Raridade do Forno (Oven Cooker):",
@@ -940,27 +873,13 @@
                 stat_status_val: "Perfeito (0 mod 138)",
                 ing_list_lbl: "Lista de Ingredientes Únicos & Cortes no Jogo:",
                 proof_lbl: "Prova:",
-                recipe_types: {
-                    moonshine: { btn: "Moonshine (Drink no Caldeirão)", label: "Moonshine", title: "🌙 Moonshine" },
-                    meal: { btn: "Refeição Quente", label: "Refeição Quente", title: "🍳 Refeição Quente" },
-                    pizza: { btn: "Pizza", label: "Pizza", title: "🍕 Pizza" },
-                    salad: { btn: "Salada", label: "Salada", title: "🥗 Salada Fresca" }
-                },
+                moonshine_title: "🌙 Moonshine",
                 for_word: "para",
                 alerts: {
                     moonshine_min: "Atenção: Você precisa de pelo menos 4 vegetais disponíveis para gerar o Moonshine!",
-                    meal_min: "Atenção: Você precisa de pelo menos 2 vegetais disponíveis para gerar a Refeição!",
-                    salad_no_lettuce: "Atenção: A Salada requer Lettuce (Alface) como base — marque Lettuce como disponível!",
-                    salad_min: "Atenção: A Salada precisa de Lettuce + pelo menos 3 outros vegetais disponíveis!",
-                    pizza_min: "Atenção: Você precisa de pelo menos 1 vegetal disponível para gerar a Pizza!",
                     no_solution: "Não encontramos uma combinação com esses filtros específicos. Tente desmarcar 'Priorizar Whole' ou marcar mais vegetais."
                 },
-                prep_notes: {
-                    moonshine: (oven) => `💡 <strong>Modo de Preparo:</strong> Coloque o Cauldron no ${oven}, adicione Água, Açúcar e os vegetais cortados conforme a lista acima.`,
-                    meal: (oven) => `💡 <strong>Modo de Preparo:</strong> Coloque a Frying Pan no ${oven}, adicione a carne, os vegetais e a erva conforme indicado.`,
-                    pizza: (oven) => `💡 <strong>Modo de Preparo:</strong> Monte a Pizza no Baking Stone dentro do ${oven} com a massa, molho, queijo e recheios.`,
-                    salad: () => `💡 <strong>Modo de Preparo:</strong> Pique os vegetais e misture no Prato (Plate). Não precisa de fogo.`
-                },
+                prep_note: (oven) => `💡 <strong>Modo de Preparo:</strong> Coloque o Cauldron no ${oven}, adicione Água, Açúcar e os vegetais cortados conforme a lista acima.`,
                 clipboard_ing_header: "Ingredientes:"
             },
             en: {
@@ -975,8 +894,7 @@
                 same_oven_prefix: "Was the test meal baked in the same oven",
                 player_badge_lbl: "Your Player Number",
                 step2_title: "Which Affinity Do You Need?",
-                recipe_type_lbl: "Recipe Type:",
-                target_label_prefix: "Select the affinity you want in your",
+                target_label: "Select the affinity you want in your Moonshine:",
                 options_title: "Preparation Options & Ingredients",
                 options_desc: "Adjust the filters below so the generator finds the ideal recipe for what you have in your pantry:",
                 oven_rarity_lbl: "🔥 Oven Cooker Rarity:",
@@ -1006,27 +924,13 @@
                 stat_status_val: "Perfect (0 mod 138)",
                 ing_list_lbl: "List of Unique Ingredients & In-Game Cuts:",
                 proof_lbl: "Proof:",
-                recipe_types: {
-                    moonshine: { btn: "Moonshine (Cauldron Drink)", label: "Moonshine", title: "🌙 Moonshine" },
-                    meal: { btn: "Hot Meal", label: "Hot Meal", title: "🍳 Hot Meal" },
-                    pizza: { btn: "Pizza", label: "Pizza", title: "🍕 Pizza" },
-                    salad: { btn: "Fresh Salad", label: "Salad", title: "🥗 Fresh Salad" }
-                },
+                moonshine_title: "🌙 Moonshine",
                 for_word: "for",
                 alerts: {
                     moonshine_min: "Notice: You need at least 4 available vegetables to generate Moonshine!",
-                    meal_min: "Notice: You need at least 2 available vegetables to generate a Hot Meal!",
-                    salad_no_lettuce: "Notice: Salad requires Lettuce as base — please select Lettuce!",
-                    salad_min: "Notice: Salad requires Lettuce + at least 3 other available vegetables!",
-                    pizza_min: "Notice: You need at least 1 available vegetable to generate Pizza!",
                     no_solution: "Could not find a combination with these specific filters. Try unchecking 'Prioritize Whole' or selecting more vegetables."
                 },
-                prep_notes: {
-                    moonshine: (oven) => `💡 <strong>Instructions:</strong> Place the Cauldron in the ${oven}, add Water, Sugar and cut vegetables as listed above.`,
-                    meal: (oven) => `💡 <strong>Instructions:</strong> Place the Frying Pan in the ${oven}, add meat, vegetables and herb as indicated.`,
-                    pizza: (oven) => `💡 <strong>Instructions:</strong> Assemble the Pizza on the Baking Stone inside the ${oven} with dough, sauce, cheese and toppings.`,
-                    salad: () => `💡 <strong>Instructions:</strong> Chop vegetables and mix on the Plate. No heat/cooker needed.`
-                },
+                prep_note: (oven) => `💡 <strong>Instructions:</strong> Place the Cauldron in the ${oven}, add Water, Sugar and cut vegetables as listed above.`,
                 clipboard_ing_header: "Ingredients:"
             }
         };
@@ -1061,15 +965,7 @@
 
             if (document.getElementById('txt_player_badge_lbl')) document.getElementById('txt_player_badge_lbl').innerText = t.player_badge_lbl;
             if (document.getElementById('txt_step2_title')) document.getElementById('txt_step2_title').innerText = t.step2_title;
-            if (document.getElementById('txt_recipe_type_lbl')) document.getElementById('txt_recipe_type_lbl').innerText = t.recipe_type_lbl;
-
-            if (document.getElementById('txt_btn_moonshine')) document.getElementById('txt_btn_moonshine').innerText = t.recipe_types.moonshine.btn;
-            if (document.getElementById('txt_btn_meal')) document.getElementById('txt_btn_meal').innerText = t.recipe_types.meal.btn;
-            if (document.getElementById('txt_btn_pizza')) document.getElementById('txt_btn_pizza').innerText = t.recipe_types.pizza.btn;
-            if (document.getElementById('txt_btn_salad')) document.getElementById('txt_btn_salad').innerText = t.recipe_types.salad.btn;
-
-            if (document.getElementById('txt_target_label_prefix')) document.getElementById('txt_target_label_prefix').innerText = t.target_label_prefix;
-            if (document.getElementById('label_recipe_type')) document.getElementById('label_recipe_type').innerText = t.recipe_types[selectedType].label;
+            if (document.getElementById('txt_target_label')) document.getElementById('txt_target_label').innerText = t.target_label;
 
             if (document.getElementById('txt_options_title')) document.getElementById('txt_options_title').innerText = t.options_title;
             if (document.getElementById('txt_options_desc')) document.getElementById('txt_options_desc').innerText = t.options_desc;
@@ -1194,17 +1090,6 @@
             onTastedChange();
         }
 
-        function setType(type) {
-            selectedType = type;
-            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`btn-${type}`).classList.add('active');
-
-            const t = I18N[currentLang];
-            document.getElementById('label_recipe_type').innerText = t.recipe_types[type].label;
-
-            generateAutomatically();
-        }
-
         function getRandomSample(arr, n) {
             const shuffled = arr.slice();
             for (let i = shuffled.length - 1; i > 0; i--) {
@@ -1234,38 +1119,19 @@
                 badgeFried.style.display = "inline-flex";
             }
 
-            const typeInfo = t.recipe_types[selectedType];
-            document.getElementById('res_title').innerText = `${typeInfo.title} ${t.for_word} ${targetSkill.name}`;
+            document.getElementById('res_title').innerText = `${t.moonshine_title} ${t.for_word} ${targetSkill.name}`;
 
             const availableVeggies = ALL_VEGGIES.filter(v => v.active);
-            const hasLettuce = availableVeggies.some(v => v.id === 'lettuce');
-            const nonLettuceVeggies = availableVeggies.filter(v => v.id !== 'lettuce');
 
-            if (selectedType === 'moonshine' && availableVeggies.length < 4) {
+            if (availableVeggies.length < 4) {
                 alert(t.alerts.moonshine_min);
-                return;
-            }
-            if (selectedType === 'meal' && availableVeggies.length < 2) {
-                alert(t.alerts.meal_min);
-                return;
-            }
-            if (selectedType === 'salad' && !hasLettuce) {
-                alert(t.alerts.salad_no_lettuce);
-                return;
-            }
-            if (selectedType === 'salad' && nonLettuceVeggies.length < 3) {
-                alert(t.alerts.salad_min);
-                return;
-            }
-            if (selectedType === 'pizza' && availableVeggies.length < 1) {
-                alert(t.alerts.pizza_min);
                 return;
             }
 
             let result = null;
 
             // Verified 100% accurate preset for Sickle (#41) on Player #19 (Blacksmithing test, Normal Oven)
-            if (!forceRandom && targetId === 41 && playerNumber === 19 && selectedType === 'moonshine' && noFried && availableVeggies.length === 10 && selectedOvenRarity === 'normal') {
+            if (!forceRandom && targetId === 41 && playerNumber === 19 && noFried && availableVeggies.length === 10 && selectedOvenRarity === 'normal') {
                 result = {
                     cooker: (currentLang === 'pt') ? OVEN_CONFIG['normal'].labelPt : OVEN_CONFIG['normal'].labelEn,
                     container: (currentLang === 'pt') ? "Cauldron (Caldeirão)" : "Cauldron",
@@ -1282,7 +1148,7 @@
                 };
             }
             // Verified 100% accurate preset for Large Maul (#65) on Player #25 (Normal Oven)
-            else if (!forceRandom && targetId === 65 && playerNumber === 25 && selectedType === 'moonshine' && noFried && availableVeggies.length === 10 && selectedOvenRarity === 'normal') {
+            else if (!forceRandom && targetId === 65 && playerNumber === 25 && noFried && availableVeggies.length === 10 && selectedOvenRarity === 'normal') {
                 result = {
                     cooker: (currentLang === 'pt') ? OVEN_CONFIG['normal'].labelPt : OVEN_CONFIG['normal'].labelEn,
                     container: (currentLang === 'pt') ? "Cauldron (Caldeirão)" : "Cauldron",
@@ -1298,8 +1164,7 @@
                     total: 454
                 };
             } else {
-                const veggiesForSolver = (selectedType === 'salad') ? nonLettuceVeggies : availableVeggies;
-                result = solveRecipe(selectedType, targetId, playerNumber, veggiesForSolver, noFried, minCuts, selectedOvenRarity, currentLang);
+                result = solveRecipe(targetId, playerNumber, availableVeggies, noFried, minCuts, selectedOvenRarity, currentLang);
             }
 
             if (!result) {
@@ -1310,34 +1175,30 @@
             // Update Oven badge in result
             const badgeOven = document.getElementById('badge_oven_status');
             if (badgeOven) {
-                if (selectedType === 'salad') {
-                    badgeOven.style.display = 'none';
+                badgeOven.style.display = 'inline-flex';
+                if (selectedOvenRarity === 'rare') {
+                    badgeOven.className = 'badge-tag badge-blue';
+                    badgeOven.style.background = '';
+                    badgeOven.style.color = '';
+                    badgeOven.style.border = '';
+                    badgeOven.innerText = (currentLang === 'pt') ? OVEN_CONFIG.rare.badgePt : OVEN_CONFIG.rare.badgeEn;
+                } else if (selectedOvenRarity === 'supreme') {
+                    badgeOven.className = 'badge-tag badge-purple';
+                    badgeOven.style.background = '';
+                    badgeOven.style.color = '';
+                    badgeOven.style.border = '';
+                    badgeOven.innerText = (currentLang === 'pt') ? OVEN_CONFIG.supreme.badgePt : OVEN_CONFIG.supreme.badgeEn;
                 } else {
-                    badgeOven.style.display = 'inline-flex';
-                    if (selectedOvenRarity === 'rare') {
-                        badgeOven.className = 'badge-tag badge-blue';
-                        badgeOven.style.background = '';
-                        badgeOven.style.color = '';
-                        badgeOven.style.border = '';
-                        badgeOven.innerText = (currentLang === 'pt') ? OVEN_CONFIG.rare.badgePt : OVEN_CONFIG.rare.badgeEn;
-                    } else if (selectedOvenRarity === 'supreme') {
-                        badgeOven.className = 'badge-tag badge-purple';
-                        badgeOven.style.background = '';
-                        badgeOven.style.color = '';
-                        badgeOven.style.border = '';
-                        badgeOven.innerText = (currentLang === 'pt') ? OVEN_CONFIG.supreme.badgePt : OVEN_CONFIG.supreme.badgeEn;
-                    } else {
-                        badgeOven.className = 'badge-tag';
-                        badgeOven.style.background = 'rgba(148, 163, 184, 0.15)';
-                        badgeOven.style.color = '#cbd5e1';
-                        badgeOven.style.border = '1px solid rgba(148, 163, 184, 0.3)';
-                        badgeOven.innerText = (currentLang === 'pt') ? OVEN_CONFIG.normal.badgePt : OVEN_CONFIG.normal.badgeEn;
-                    }
+                    badgeOven.className = 'badge-tag';
+                    badgeOven.style.background = 'rgba(148, 163, 184, 0.15)';
+                    badgeOven.style.color = '#cbd5e1';
+                    badgeOven.style.border = '1px solid rgba(148, 163, 184, 0.3)';
+                    badgeOven.innerText = (currentLang === 'pt') ? OVEN_CONFIG.normal.badgePt : OVEN_CONFIG.normal.badgeEn;
                 }
             }
 
             currentGeneratedRecipe = {
-                title: `${typeInfo.title} ${t.for_word} ${targetSkill.name}`,
+                title: `${t.moonshine_title} ${t.for_word} ${targetSkill.name}`,
                 skillName: targetSkill.name,
                 skillId: targetId,
                 cooker: result.cooker,
@@ -1364,11 +1225,11 @@
 
             const prepNote = document.getElementById('res_prep_note');
             const ovenDisplayName = (currentLang === 'pt') ? OVEN_CONFIG[selectedOvenRarity].labelPt : OVEN_CONFIG[selectedOvenRarity].labelEn;
-            prepNote.innerHTML = t.prep_notes[selectedType](ovenDisplayName);
+            prepNote.innerHTML = t.prep_note(ovenDisplayName);
         }
 
-        // UNIFIED SOLVER WITH OFFICIAL VERIFIED WURM FOOD SCORES & OVEN RARITY
-        function solveRecipe(type, targetAff, pNum, veggiesList, noFried, minCuts, ovenRarity = 'normal', lang = 'pt') {
+        // UNIFIED SOLVER FOR MOONSHINE WITH OFFICIAL VERIFIED WURM FOOD SCORES & OVEN RARITY
+        function solveRecipe(targetAff, pNum, veggiesList, noFried, minCuts, ovenRarity = 'normal', lang = 'pt') {
             let preps = [{ name: "Whole (+0)", val: 0 }];
             if (!noFried) {
                 preps.push({ name: "Fried (+1)", val: 1 });
@@ -1382,132 +1243,37 @@
                 return preps[Math.floor(Math.random() * preps.length)];
             }
 
-            const ovenBonus = (type === 'salad') ? 0 : (OVEN_CONFIG[ovenRarity]?.bonus || 0);
-            const cookerName = (type === 'salad') ? 
-                ((lang === 'pt') ? "None (Sem Fogão)" : "None (No Cooker)") : 
-                ((lang === 'pt') ? OVEN_CONFIG[ovenRarity]?.labelPt : OVEN_CONFIG[ovenRarity]?.labelEn);
+            const ovenBonus = OVEN_CONFIG[ovenRarity]?.bonus || 0;
+            const cookerName = (lang === 'pt') ? OVEN_CONFIG[ovenRarity]?.labelPt : OVEN_CONFIG[ovenRarity]?.labelEn;
 
-            if (type === 'moonshine') {
-                // Oven(40 + ovenBonus) + Cauldron(75) + Sugar(47) + Water(6) + BaseRecipeBonus(3) = 171 + ovenBonus
-                const baseSum = 171 + ovenBonus;
-                const countsToTry = [5, 6, 7, 8].filter(c => c <= veggiesList.length);
+            // Oven(40 + ovenBonus) + Cauldron(75) + Sugar(47) + Water(6) + BaseRecipeBonus(3) = 171 + ovenBonus
+            const baseSum = 171 + ovenBonus;
+            const countsToTry = [5, 6, 7, 8].filter(c => c <= veggiesList.length);
 
-                for (let i = 0; i < 45000; i++) {
-                    const numVeg = countsToTry[Math.floor(Math.random() * countsToTry.length)];
-                    const chosenVeggies = getRandomSample(veggiesList, numVeg);
-                    let sum = baseSum;
-                    let picks = [];
+            for (let i = 0; i < 50000; i++) {
+                const numVeg = countsToTry[Math.floor(Math.random() * countsToTry.length)];
+                const chosenVeggies = getRandomSample(veggiesList, numVeg);
+                let sum = baseSum;
+                let picks = [];
 
-                    for (let v of chosenVeggies) {
-                        const prep = pickPrep();
-                        const vName = (lang === 'pt') ? v.namePt : v.nameEn;
-                        picks.push({ text: `${vName} — ${prep.name}` });
-                        sum += v.val + prep.val;
-                    }
-
-                    if ((sum + pNum) % 138 === targetAff) {
-                        return {
-                            cooker: cookerName,
-                            container: (lang === 'pt') ? "Cauldron (Caldeirão)" : "Cauldron",
-                            total: sum,
-                            ingredients: [
-                                { text: (lang === 'pt') ? "Sugar (Açúcar) — Whole" : "Sugar — Whole" },
-                                { text: (lang === 'pt') ? "Water (Água) — Whole" : "Water — Whole" },
-                                ...picks
-                            ]
-                        };
-                    }
+                for (let v of chosenVeggies) {
+                    const prep = pickPrep();
+                    const vName = (lang === 'pt') ? v.namePt : v.nameEn;
+                    picks.push({ text: `${vName} — ${prep.name}` });
+                    sum += v.val + prep.val;
                 }
-            } else if (type === 'meal') {
-                // Oven(40 + ovenBonus) + Frying Pan(75) + Base(3) = 118 + ovenBonus
-                const baseSum = 118 + ovenBonus;
 
-                for (let i = 0; i < 35000; i++) {
-                    const m = MEATS[Math.floor(Math.random() * MEATS.length)];
-                    const mp = (minCuts || Math.random() > 0.4) ? { name: "Whole (+0)", val: 0 } : { name: "Chopped (+16)", val: 16 };
-                    
-                    const [v1, v2] = getRandomSample(veggiesList, 2);
-                    const p1 = pickPrep();
-                    const p2 = pickPrep();
-                    const h = HERBS[Math.floor(Math.random() * HERBS.length)];
-
-                    const sum = baseSum + m.val + mp.val + v1.val + p1.val + v2.val + p2.val + h.val;
-                    if ((sum + pNum) % 138 === targetAff) {
-                        const mName = (lang === 'pt') ? m.namePt : m.nameEn;
-                        const v1Name = (lang === 'pt') ? v1.namePt : v1.nameEn;
-                        const v2Name = (lang === 'pt') ? v2.namePt : v2.nameEn;
-                        const hName = (lang === 'pt') ? h.namePt : h.nameEn;
-                        return {
-                            cooker: cookerName,
-                            container: (lang === 'pt') ? "Frying Pan (Frigideira)" : "Frying Pan",
-                            total: sum,
-                            ingredients: [
-                                { text: `${mName} — ${mp.name}` },
-                                { text: `${v1Name} — ${p1.name}` },
-                                { text: `${v2Name} — ${p2.name}` },
-                                { text: `${hName} — Whole` }
-                            ]
-                        };
-                    }
-                }
-            } else if (type === 'pizza') {
-                // Oven(40 + ovenBonus) + Baking Stone(63) + Base(3) + Dough(52) + Passata(114) + Cheese(84) = 356 + ovenBonus
-                const baseSum = 356 + ovenBonus;
-
-                for (let i = 0; i < 35000; i++) {
-                    const m = MEATS[Math.floor(Math.random() * MEATS.length)];
-                    const mp = (minCuts || Math.random() > 0.4) ? { name: "Whole (+0)", val: 0 } : { name: "Chopped (+16)", val: 16 };
-                    const v = veggiesList[Math.floor(Math.random() * veggiesList.length)];
-                    const vp = pickPrep();
-                    const h = HERBS[Math.floor(Math.random() * HERBS.length)];
-
-                    const sum = baseSum + m.val + mp.val + v.val + vp.val + h.val;
-                    if ((sum + pNum) % 138 === targetAff) {
-                        const mName = (lang === 'pt') ? m.namePt : m.nameEn;
-                        const vName = (lang === 'pt') ? v.namePt : v.nameEn;
-                        const hName = (lang === 'pt') ? h.namePt : h.nameEn;
-                        return {
-                            cooker: cookerName,
-                            container: (lang === 'pt') ? "Baking Stone (Pedra de Assar)" : "Baking Stone",
-                            total: sum,
-                            ingredients: [
-                                { text: (lang === 'pt') ? "Dough (Massa de Pizza)" : "Dough" },
-                                { text: (lang === 'pt') ? "Passata (Molho de Tomate)" : "Passata" },
-                                { text: (lang === 'pt') ? "Cheese (Queijo)" : "Cheese" },
-                                { text: `${mName} — ${mp.name}` },
-                                { text: `${vName} — ${vp.name}` },
-                                { text: `${hName} — Whole` }
-                            ]
-                        };
-                    }
-                }
-            } else if (type === 'salad') {
-                // Plate(70) + Lettuce Chopped (45 + 16 = 61) = 131
-                const baseSum = 131;
-
-                for (let i = 0; i < 35000; i++) {
-                    const [v1, v2, v3] = getRandomSample(veggiesList, 3);
-                    const p1 = pickPrep();
-                    const p2 = pickPrep();
-                    const p3 = pickPrep();
-
-                    const sum = baseSum + v1.val + p1.val + v2.val + p2.val + v3.val + p3.val;
-                    if ((sum + pNum) % 138 === targetAff) {
-                        const v1Name = (lang === 'pt') ? v1.namePt : v1.nameEn;
-                        const v2Name = (lang === 'pt') ? v2.namePt : v2.nameEn;
-                        const v3Name = (lang === 'pt') ? v3.namePt : v3.nameEn;
-                        return {
-                            cooker: cookerName,
-                            container: (lang === 'pt') ? "Plate (Prato)" : "Plate",
-                            total: sum,
-                            ingredients: [
-                                { text: (lang === 'pt') ? "Lettuce (Alface) — Chopped (Base)" : "Lettuce — Chopped (Base)" },
-                                { text: `${v1Name} — ${p1.name}` },
-                                { text: `${v2Name} — ${p2.name}` },
-                                { text: `${v3Name} — ${p3.name}` }
-                            ]
-                        };
-                    }
+                if ((sum + pNum) % 138 === targetAff) {
+                    return {
+                        cooker: cookerName,
+                        container: (lang === 'pt') ? "Cauldron (Caldeirão)" : "Cauldron",
+                        total: sum,
+                        ingredients: [
+                            { text: (lang === 'pt') ? "Sugar (Açúcar) — Whole" : "Sugar — Whole" },
+                            { text: (lang === 'pt') ? "Water (Água) — Whole" : "Water — Whole" },
+                            ...picks
+                        ]
+                    };
                 }
             }
 
