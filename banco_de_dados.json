@@ -1,0 +1,1399 @@
+{
+  "cookers": [
+    {
+      "name": "Nothing",
+      "value": 0
+    },
+    {
+      "name": "Campfire",
+      "value": 37
+    },
+    {
+      "name": "Forge",
+      "value": 42
+    },
+    {
+      "name": "Oven",
+      "value": 40
+    }
+  ],
+  "containers": [
+    {
+      "name": "Sauce Pan",
+      "value": 74
+    },
+    {
+      "name": "Cauldron",
+      "value": 75
+    },
+    {
+      "name": "Frying Pan",
+      "value": 75
+    },
+    {
+      "name": "Pottery Bowl",
+      "value": 77
+    },
+    {
+      "name": "Mushroom Container",
+      "value": 119
+    },
+    {
+      "name": "Sausage Skin",
+      "value": 132
+    },
+    {
+      "name": "Open Helm",
+      "value": 11
+    },
+    {
+      "name": "Pie Dish",
+      "value": 61
+    },
+    {
+      "name": "Cake Tin",
+      "value": 62
+    },
+    {
+      "name": "Baking Stone",
+      "value": 63
+    },
+    {
+      "name": "Roasting Dish",
+      "value": 65
+    },
+    {
+      "name": "Plate",
+      "value": 70
+    }
+  ],
+  "rarities": [
+    {
+      "name": "Normal",
+      "value": 0
+    },
+    {
+      "name": "Rare",
+      "value": 1
+    },
+    {
+      "name": "Supreme",
+      "value": 2
+    },
+    {
+      "name": "Fantastic",
+      "value": 3
+    }
+  ],
+  "preparations": [
+    {
+      "name": "Whole",
+      "value": 0
+    },
+    {
+      "name": "Fried",
+      "value": 1
+    },
+    {
+      "name": "Grilled",
+      "value": 2
+    },
+    {
+      "name": "Roasted",
+      "value": 4
+    },
+    {
+      "name": "Cooked",
+      "value": 7
+    },
+    {
+      "name": "Steamed",
+      "value": 5
+    },
+    {
+      "name": "Chopped",
+      "value": 16
+    },
+    {
+      "name": "Diced",
+      "value": 16
+    },
+    {
+      "name": "Minced",
+      "value": 32
+    },
+    {
+      "name": "Mashed",
+      "value": 32
+    },
+    {
+      "name": "Ground",
+      "value": 16
+    },
+    {
+      "name": "Jam",
+      "value": 28
+    },
+    {
+      "name": "Fresh",
+      "value": 128
+    },
+    {
+      "name": "Red wine (Vinegar)",
+      "value": 107
+    },
+    {
+      "name": "Sausage Meat",
+      "value": 132
+    },
+    {
+      "name": "Sausage Veg",
+      "value": 76
+    },
+    {
+      "name": "Wheat",
+      "value": 6
+    },
+    {
+      "name": "Barley",
+      "value": 5
+    },
+    {
+      "name": "Oat",
+      "value": 4
+    },
+    {
+      "name": "Rye",
+      "value": 3
+    }
+  ],
+  "skills": [
+    {
+      "id": 109,
+      "name": "Aggressive Fighting"
+    },
+    {
+      "id": 25,
+      "name": "Alchemy"
+    },
+    {
+      "id": 130,
+      "name": "Animal Husbandry"
+    },
+    {
+      "id": 129,
+      "name": "Animal Taming"
+    },
+    {
+      "id": 120,
+      "name": "Archaeology"
+    },
+    {
+      "id": 16,
+      "name": "Archery"
+    },
+    {
+      "id": 22,
+      "name": "Armour Smithing"
+    },
+    {
+      "id": 11,
+      "name": "Axes"
+    },
+    {
+      "id": 62,
+      "name": "Baking"
+    },
+    {
+      "id": 63,
+      "name": "Beverages"
+    },
+    {
+      "id": 59,
+      "name": "Blacksmithing"
+    },
+    {
+      "id": 54,
+      "name": "Blades Smithing"
+    },
+    {
+      "id": 1,
+      "name": "Body"
+    },
+    {
+      "id": 3,
+      "name": "Body Control"
+    },
+    {
+      "id": 4,
+      "name": "Body Stamina"
+    },
+    {
+      "id": 5,
+      "name": "Body Strength"
+    },
+    {
+      "id": 122,
+      "name": "Botanizing"
+    },
+    {
+      "id": 103,
+      "name": "Bowyery"
+    },
+    {
+      "id": 77,
+      "name": "Butchering"
+    },
+    {
+      "id": 73,
+      "name": "Butchering Knife"
+    },
+    {
+      "id": 78,
+      "name": "Carpentry"
+    },
+    {
+      "id": 135,
+      "name": "Cartography"
+    },
+    {
+      "id": 72,
+      "name": "Carving Knife"
+    },
+    {
+      "id": 128,
+      "name": "Catapults"
+    },
+    {
+      "id": 56,
+      "name": "Chain Armour Smithing"
+    },
+    {
+      "id": 118,
+      "name": "Channeling"
+    },
+    {
+      "id": 123,
+      "name": "Climbing"
+    },
+    {
+      "id": 52,
+      "name": "Cloth Tailoring"
+    },
+    {
+      "id": 14,
+      "name": "Clubs"
+    },
+    {
+      "id": 97,
+      "name": "Coal-Making"
+    },
+    {
+      "id": 19,
+      "name": "Cooking"
+    },
+    {
+      "id": 60,
+      "name": "Dairy Food Making"
+    },
+    {
+      "id": 110,
+      "name": "Defensive Fighting"
+    },
+    {
+      "id": 44,
+      "name": "Digging"
+    },
+    {
+      "id": 119,
+      "name": "Exorcism"
+    },
+    {
+      "id": 33,
+      "name": "Farming"
+    },
+    {
+      "id": 28,
+      "name": "Fighting"
+    },
+    {
+      "id": 102,
+      "name": "Fine Carpentry"
+    },
+    {
+      "id": 79,
+      "name": "Firemaking"
+    },
+    {
+      "id": 112,
+      "name": "First Aid"
+    },
+    {
+      "id": 94,
+      "name": "Fishing"
+    },
+    {
+      "id": 104,
+      "name": "Fletching"
+    },
+    {
+      "id": 121,
+      "name": "Foraging"
+    },
+    {
+      "id": 38,
+      "name": "Forestry"
+    },
+    {
+      "id": 36,
+      "name": "Gardening"
+    },
+    {
+      "id": 70,
+      "name": "Halberd"
+    },
+    {
+      "id": 91,
+      "name": "Hammer"
+    },
+    {
+      "id": 15,
+      "name": "Hammers"
+    },
+    {
+      "id": 50,
+      "name": "Hatchet"
+    },
+    {
+      "id": 29,
+      "name": "Healing"
+    },
+    {
+      "id": 61,
+      "name": "Hot Food Cooking"
+    },
+    {
+      "id": 88,
+      "name": "Huge Axe"
+    },
+    {
+      "id": 75,
+      "name": "Huge Club"
+    },
+    {
+      "id": 101,
+      "name": "Jewelry Smithing"
+    },
+    {
+      "id": 12,
+      "name": "Knives"
+    },
+    {
+      "id": 87,
+      "name": "Large Axe"
+    },
+    {
+      "id": 65,
+      "name": "Large Maul"
+    },
+    {
+      "id": 85,
+      "name": "Large Metal Shield"
+    },
+    {
+      "id": 83,
+      "name": "Large Wooden Shield"
+    },
+    {
+      "id": 51,
+      "name": "Leather working"
+    },
+    {
+      "id": 125,
+      "name": "Lock Picking"
+    },
+    {
+      "id": 95,
+      "name": "Locksmithing"
+    },
+    {
+      "id": 132,
+      "name": "Long Bow"
+    },
+    {
+      "id": 69,
+      "name": "Long Spear"
+    },
+    {
+      "id": 64,
+      "name": "Longsword"
+    },
+    {
+      "id": 53,
+      "name": "Masonry"
+    },
+    {
+      "id": 13,
+      "name": "Mauls"
+    },
+    {
+      "id": 37,
+      "name": "Meditating"
+    },
+    {
+      "id": 133,
+      "name": "Medium Bow"
+    },
+    {
+      "id": 66,
+      "name": "Medium Maul"
+    },
+    {
+      "id": 86,
+      "name": "Medium Metal Shield"
+    },
+    {
+      "id": 82,
+      "name": "Medium Wooden Shield"
+    },
+    {
+      "id": 99,
+      "name": "Metallurgy"
+    },
+    {
+      "id": 115,
+      "name": "Milking"
+    },
+    {
+      "id": 98,
+      "name": "Milling"
+    },
+    {
+      "id": 6,
+      "name": "Mind Logic"
+    },
+    {
+      "id": 7,
+      "name": "Mind Speed"
+    },
+    {
+      "id": 43,
+      "name": "Mining"
+    },
+    {
+      "id": 23,
+      "name": "Misc Items"
+    },
+    {
+      "id": 100,
+      "name": "Natural Substances"
+    },
+    {
+      "id": 26,
+      "name": "Nature"
+    },
+    {
+      "id": 111,
+      "name": "Normal Fighting"
+    },
+    {
+      "id": 34,
+      "name": "Papyrusmaking"
+    },
+    {
+      "id": 92,
+      "name": "Paving"
+    },
+    {
+      "id": 45,
+      "name": "Pick axe"
+    },
+    {
+      "id": 57,
+      "name": "Plate Armour Smithing"
+    },
+    {
+      "id": 17,
+      "name": "Polearms"
+    },
+    {
+      "id": 47,
+      "name": "Pottery"
+    },
+    {
+      "id": 117,
+      "name": "Praying"
+    },
+    {
+      "id": 116,
+      "name": "Preaching"
+    },
+    {
+      "id": 93,
+      "name": "Prospecting"
+    },
+    {
+      "id": 106,
+      "name": "Puppeteering"
+    },
+    {
+      "id": 39,
+      "name": "Rake"
+    },
+    {
+      "id": 30,
+      "name": "Religion"
+    },
+    {
+      "id": 96,
+      "name": "Repairing"
+    },
+    {
+      "id": 137,
+      "name": "Restoration"
+    },
+    {
+      "id": 48,
+      "name": "Ropemaking"
+    },
+    {
+      "id": 76,
+      "name": "Saw"
+    },
+    {
+      "id": 40,
+      "name": "Scythe"
+    },
+    {
+      "id": 114,
+      "name": "Shield Bashing"
+    },
+    {
+      "id": 58,
+      "name": "Shield Smithing"
+    },
+    {
+      "id": 24,
+      "name": "Shields"
+    },
+    {
+      "id": 134,
+      "name": "Ship Building"
+    },
+    {
+      "id": 131,
+      "name": "Short Bow"
+    },
+    {
+      "id": 89,
+      "name": "Shortsword"
+    },
+    {
+      "id": 46,
+      "name": "Shovel"
+    },
+    {
+      "id": 41,
+      "name": "Sickle"
+    },
+    {
+      "id": 42,
+      "name": "Small Axe"
+    },
+    {
+      "id": 67,
+      "name": "Small Maul"
+    },
+    {
+      "id": 84,
+      "name": "Small Metal Shield"
+    },
+    {
+      "id": 81,
+      "name": "Small Wooden Shield"
+    },
+    {
+      "id": 20,
+      "name": "Smithing"
+    },
+    {
+      "id": 2,
+      "name": "Soul"
+    },
+    {
+      "id": 8,
+      "name": "Soul Depth"
+    },
+    {
+      "id": 9,
+      "name": "Soul Strength"
+    },
+    {
+      "id": 71,
+      "name": "Staff"
+    },
+    {
+      "id": 126,
+      "name": "Stealing"
+    },
+    {
+      "id": 74,
+      "name": "Stone Chisel"
+    },
+    {
+      "id": 124,
+      "name": "Stone Cutting"
+    },
+    {
+      "id": 10,
+      "name": "Swords"
+    },
+    {
+      "id": 18,
+      "name": "Tailoring"
+    },
+    {
+      "id": 113,
+      "name": "Taunting"
+    },
+    {
+      "id": 35,
+      "name": "Thatching"
+    },
+    {
+      "id": 31,
+      "name": "Thievery"
+    },
+    {
+      "id": 107,
+      "name": "Toy Making"
+    },
+    {
+      "id": 27,
+      "name": "Toys"
+    },
+    {
+      "id": 80,
+      "name": "Tracking"
+    },
+    {
+      "id": 127,
+      "name": "Traps"
+    },
+    {
+      "id": 136,
+      "name": "Trebuchets"
+    },
+    {
+      "id": 90,
+      "name": "Two Handed Sword"
+    },
+    {
+      "id": 32,
+      "name": "War Machines"
+    },
+    {
+      "id": 68,
+      "name": "Warhammer"
+    },
+    {
+      "id": 55,
+      "name": "Weapon Heads Smithing"
+    },
+    {
+      "id": 21,
+      "name": "Weapon Smithing"
+    },
+    {
+      "id": 108,
+      "name": "Weaponless Fighting"
+    },
+    {
+      "id": 49,
+      "name": "Woodcutting"
+    },
+    {
+      "id": 105,
+      "name": "Yoyo"
+    }
+  ],
+  "ingredients": [
+    {
+      "name": "Nothing",
+      "affinity_value": 0,
+      "category": "other"
+    },
+    {
+      "name": "Bear",
+      "affinity_value": 16,
+      "category": "meat"
+    },
+    {
+      "name": "Beef",
+      "affinity_value": 17,
+      "category": "meat"
+    },
+    {
+      "name": "Canine",
+      "affinity_value": 18,
+      "category": "meat"
+    },
+    {
+      "name": "Dragon",
+      "affinity_value": 20,
+      "category": "meat"
+    },
+    {
+      "name": "Feline",
+      "affinity_value": 19,
+      "category": "meat"
+    },
+    {
+      "name": "Fowl",
+      "affinity_value": 21,
+      "category": "other"
+    },
+    {
+      "name": "Game",
+      "affinity_value": 22,
+      "category": "other"
+    },
+    {
+      "name": "Horse",
+      "affinity_value": 23,
+      "category": "meat"
+    },
+    {
+      "name": "Human",
+      "affinity_value": 24,
+      "category": "meat"
+    },
+    {
+      "name": "Humanoid",
+      "affinity_value": 25,
+      "category": "meat"
+    },
+    {
+      "name": "Insect",
+      "affinity_value": 26,
+      "category": "other"
+    },
+    {
+      "name": "Lamb",
+      "affinity_value": 27,
+      "category": "other"
+    },
+    {
+      "name": "Pork",
+      "affinity_value": 28,
+      "category": "meat"
+    },
+    {
+      "name": "Seafood",
+      "affinity_value": 29,
+      "category": "other"
+    },
+    {
+      "name": "Snake",
+      "affinity_value": 30,
+      "category": "other"
+    },
+    {
+      "name": "Tough",
+      "affinity_value": 31,
+      "category": "other"
+    },
+    {
+      "name": "Cabbage",
+      "affinity_value": 42,
+      "category": "veggie"
+    },
+    {
+      "name": "Carrot",
+      "affinity_value": 41,
+      "category": "veggie"
+    },
+    {
+      "name": "Corn",
+      "affinity_value": 44,
+      "category": "veggie"
+    },
+    {
+      "name": "Cucumber",
+      "affinity_value": 17,
+      "category": "veggie"
+    },
+    {
+      "name": "Lettuce",
+      "affinity_value": 45,
+      "category": "veggie"
+    },
+    {
+      "name": "Onion",
+      "affinity_value": 91,
+      "category": "veggie"
+    },
+    {
+      "name": "Pea Pods",
+      "affinity_value": 46,
+      "category": "other"
+    },
+    {
+      "name": "Peas",
+      "affinity_value": 58,
+      "category": "veggie"
+    },
+    {
+      "name": "Potato",
+      "affinity_value": 47,
+      "category": "veggie"
+    },
+    {
+      "name": "Pumpkin",
+      "affinity_value": 45,
+      "category": "veggie"
+    },
+    {
+      "name": "Rice",
+      "affinity_value": 68,
+      "category": "other"
+    },
+    {
+      "name": "Tomato",
+      "affinity_value": 43,
+      "category": "veggie"
+    },
+    {
+      "name": "Basil",
+      "affinity_value": 95,
+      "category": "herb"
+    },
+    {
+      "name": "Belladonna",
+      "affinity_value": 97,
+      "category": "other"
+    },
+    {
+      "name": "Fennel",
+      "affinity_value": 39,
+      "category": "herb"
+    },
+    {
+      "name": "Garlic",
+      "affinity_value": 92,
+      "category": "other"
+    },
+    {
+      "name": "Lovage",
+      "affinity_value": 89,
+      "category": "other"
+    },
+    {
+      "name": "Mint",
+      "affinity_value": 38,
+      "category": "other"
+    },
+    {
+      "name": "Nettles",
+      "affinity_value": 101,
+      "category": "other"
+    },
+    {
+      "name": "Oregano",
+      "affinity_value": 93,
+      "category": "herb"
+    },
+    {
+      "name": "Parsley",
+      "affinity_value": 94,
+      "category": "other"
+    },
+    {
+      "name": "Rosemary",
+      "affinity_value": 99,
+      "category": "herb"
+    },
+    {
+      "name": "Sage",
+      "affinity_value": 90,
+      "category": "other"
+    },
+    {
+      "name": "Sassafras",
+      "affinity_value": 102,
+      "category": "other"
+    },
+    {
+      "name": "Thyme",
+      "affinity_value": 96,
+      "category": "herb"
+    },
+    {
+      "name": "Cumin",
+      "affinity_value": 48,
+      "category": "spice"
+    },
+    {
+      "name": "Fennel Seed",
+      "affinity_value": 59,
+      "category": "herb"
+    },
+    {
+      "name": "Ginger",
+      "affinity_value": 49,
+      "category": "spice"
+    },
+    {
+      "name": "Nutmeg",
+      "affinity_value": 50,
+      "category": "other"
+    },
+    {
+      "name": "Paprika",
+      "affinity_value": 51,
+      "category": "other"
+    },
+    {
+      "name": "Turmeric",
+      "affinity_value": 52,
+      "category": "other"
+    },
+    {
+      "name": "Chestnut",
+      "affinity_value": 17,
+      "category": "other"
+    },
+    {
+      "name": "Hazelnuts",
+      "affinity_value": 8,
+      "category": "other"
+    },
+    {
+      "name": "Pinenut",
+      "affinity_value": 92,
+      "category": "other"
+    },
+    {
+      "name": "Walnut",
+      "affinity_value": 16,
+      "category": "other"
+    },
+    {
+      "name": "Blue Shark",
+      "affinity_value": 10,
+      "category": "meat"
+    },
+    {
+      "name": "Brook Trout",
+      "affinity_value": 19,
+      "category": "meat"
+    },
+    {
+      "name": "Carp",
+      "affinity_value": 18,
+      "category": "meat"
+    },
+    {
+      "name": "Catfish",
+      "affinity_value": 14,
+      "category": "meat"
+    },
+    {
+      "name": "Dorado",
+      "affinity_value": 14,
+      "category": "other"
+    },
+    {
+      "name": "Herring",
+      "affinity_value": 13,
+      "category": "other"
+    },
+    {
+      "name": "Loach",
+      "affinity_value": 89,
+      "category": "other"
+    },
+    {
+      "name": "Marlin",
+      "affinity_value": 9,
+      "category": "other"
+    },
+    {
+      "name": "Minnow",
+      "affinity_value": 88,
+      "category": "other"
+    },
+    {
+      "name": "Octopus",
+      "affinity_value": 12,
+      "category": "other"
+    },
+    {
+      "name": "Perch",
+      "affinity_value": 17,
+      "category": "other"
+    },
+    {
+      "name": "Pike",
+      "affinity_value": 11,
+      "category": "other"
+    },
+    {
+      "name": "Roach",
+      "affinity_value": 16,
+      "category": "other"
+    },
+    {
+      "name": "Sailfish",
+      "affinity_value": 13,
+      "category": "meat"
+    },
+    {
+      "name": "Sardine",
+      "affinity_value": 87,
+      "category": "other"
+    },
+    {
+      "name": "Smallmouth Bass",
+      "affinity_value": 12,
+      "category": "other"
+    },
+    {
+      "name": "Snook",
+      "affinity_value": 15,
+      "category": "other"
+    },
+    {
+      "name": "Tuna",
+      "affinity_value": 15,
+      "category": "other"
+    },
+    {
+      "name": "White Shark",
+      "affinity_value": 11,
+      "category": "meat"
+    },
+    {
+      "name": "Wurmfish",
+      "affinity_value": 90,
+      "category": "meat"
+    },
+    {
+      "name": "Blueberry",
+      "affinity_value": 100,
+      "category": "other"
+    },
+    {
+      "name": "Cherries",
+      "affinity_value": 7,
+      "category": "other"
+    },
+    {
+      "name": "Lingonberry",
+      "affinity_value": 103,
+      "category": "other"
+    },
+    {
+      "name": "Raspberries",
+      "affinity_value": 104,
+      "category": "other"
+    },
+    {
+      "name": "Strawberries",
+      "affinity_value": 98,
+      "category": "other"
+    },
+    {
+      "name": "Barley",
+      "affinity_value": 5,
+      "category": "grain"
+    },
+    {
+      "name": "Cornflour",
+      "affinity_value": 128,
+      "category": "veggie"
+    },
+    {
+      "name": "Oat",
+      "affinity_value": 4,
+      "category": "grain"
+    },
+    {
+      "name": "Rye",
+      "affinity_value": 3,
+      "category": "grain"
+    },
+    {
+      "name": "Wheat",
+      "affinity_value": 6,
+      "category": "grain"
+    },
+    {
+      "name": "Buffalo Cheese",
+      "affinity_value": 87,
+      "category": "cheese"
+    },
+    {
+      "name": "Cheese",
+      "affinity_value": 84,
+      "category": "cheese"
+    },
+    {
+      "name": "Feta Cheese",
+      "affinity_value": 86,
+      "category": "cheese"
+    },
+    {
+      "name": "Goat Cheese",
+      "affinity_value": 85,
+      "category": "grain"
+    },
+    {
+      "name": "Blue Grapes",
+      "affinity_value": 9,
+      "category": "other"
+    },
+    {
+      "name": "Green Apple",
+      "affinity_value": 18,
+      "category": "other"
+    },
+    {
+      "name": "Green Grapes",
+      "affinity_value": 12,
+      "category": "other"
+    },
+    {
+      "name": "Lemon",
+      "affinity_value": 8,
+      "category": "other"
+    },
+    {
+      "name": "Olives",
+      "affinity_value": 10,
+      "category": "other"
+    },
+    {
+      "name": "Orange",
+      "affinity_value": 53,
+      "category": "other"
+    },
+    {
+      "name": "Pineapple",
+      "affinity_value": 5,
+      "category": "other"
+    },
+    {
+      "name": "Batter",
+      "affinity_value": 82,
+      "category": "other"
+    },
+    {
+      "name": "Bread",
+      "affinity_value": 127,
+      "category": "grain"
+    },
+    {
+      "name": "Croutons",
+      "affinity_value": 126,
+      "category": "other"
+    },
+    {
+      "name": "Dough",
+      "affinity_value": 52,
+      "category": "grain"
+    },
+    {
+      "name": "Pastry",
+      "affinity_value": 116,
+      "category": "other"
+    },
+    {
+      "name": "Sliced Bread",
+      "affinity_value": 130,
+      "category": "grain"
+    },
+    {
+      "name": "Black Mushroom",
+      "affinity_value": 121,
+      "category": "other"
+    },
+    {
+      "name": "Blue Mushroom",
+      "affinity_value": 124,
+      "category": "other"
+    },
+    {
+      "name": "Brown Mushroom",
+      "affinity_value": 122,
+      "category": "other"
+    },
+    {
+      "name": "Green Mushroom",
+      "affinity_value": 120,
+      "category": "other"
+    },
+    {
+      "name": "Red Mushroom",
+      "affinity_value": 125,
+      "category": "other"
+    },
+    {
+      "name": "Yellow Mushroom",
+      "affinity_value": 123,
+      "category": "other"
+    },
+    {
+      "name": "Bacon",
+      "affinity_value": 79,
+      "category": "other"
+    },
+    {
+      "name": "Cocoa Bean",
+      "affinity_value": 63,
+      "category": "other"
+    },
+    {
+      "name": "Corn oil",
+      "affinity_value": 5,
+      "category": "veggie"
+    },
+    {
+      "name": "Cotton Seed Oil",
+      "affinity_value": 121,
+      "category": "liquid/seasoning"
+    },
+    {
+      "name": "Crisps",
+      "affinity_value": 133,
+      "category": "other"
+    },
+    {
+      "name": "Egg",
+      "affinity_value": 68,
+      "category": "other"
+    },
+    {
+      "name": "Fat",
+      "affinity_value": 24,
+      "category": "other"
+    },
+    {
+      "name": "Fries",
+      "affinity_value": 111,
+      "category": "other"
+    },
+    {
+      "name": "Gravy",
+      "affinity_value": 106,
+      "category": "other"
+    },
+    {
+      "name": "Haggis",
+      "affinity_value": 127,
+      "category": "other"
+    },
+    {
+      "name": "Honey",
+      "affinity_value": 89,
+      "category": "liquid/seasoning"
+    },
+    {
+      "name": "Maple Sap",
+      "affinity_value": 18,
+      "category": "other"
+    },
+    {
+      "name": "Maple Syrup",
+      "affinity_value": 17,
+      "category": "other"
+    },
+    {
+      "name": "Oleander",
+      "affinity_value": 21,
+      "category": "other"
+    },
+    {
+      "name": "Olive oil",
+      "affinity_value": 20,
+      "category": "liquid/seasoning"
+    },
+    {
+      "name": "Passata",
+      "affinity_value": 114,
+      "category": "other"
+    },
+    {
+      "name": "Pesto",
+      "affinity_value": 117,
+      "category": "other"
+    },
+    {
+      "name": "Salt",
+      "affinity_value": 99,
+      "category": "liquid/seasoning"
+    },
+    {
+      "name": "Saltwater",
+      "affinity_value": 16,
+      "category": "liquid/seasoning"
+    },
+    {
+      "name": "Stock",
+      "affinity_value": 118,
+      "category": "other"
+    },
+    {
+      "name": "Sugar",
+      "affinity_value": 47,
+      "category": "liquid/seasoning"
+    },
+    {
+      "name": "Vinegar",
+      "affinity_value": 22,
+      "category": "other"
+    },
+    {
+      "name": "Water",
+      "affinity_value": 6,
+      "category": "liquid/seasoning"
+    }
+  ],
+  "characters": [
+    {
+      "name": "Personagem Principal",
+      "setup": {
+        "cooker": "Oven (+40)",
+        "container": "Frying Pan (+75)",
+        "meat": "Bear Meat (+16)",
+        "veggie": "Corn (+44)",
+        "tasted_affinity": "Large Maul (ID 65)"
+      },
+      "player_number": 25
+    }
+  ],
+  "saved_recipes": [
+    {
+      "name": "Moonshine Large Maul Sem Repetições",
+      "type": "Moonshine (Drink)",
+      "target_affinity": "Large Maul (ID 65)",
+      "player_number": 25,
+      "cooker": "Oven",
+      "container": "Cauldron",
+      "ingredients": [
+        "Sugar (Whole)",
+        "Water (Whole)",
+        "Cabbage (Whole)",
+        "Carrot (Whole)",
+        "Corn (Whole)",
+        "Lettuce (Whole)",
+        "Peas (Whole)",
+        "Potato (Whole)",
+        "Tomato (Chopped)"
+      ],
+      "total_score": 454,
+      "modulo_138": 40,
+      "formula_proof": "(454 mod 138) + 25 = 40 + 25 = 65 (Large Maul)"
+    }
+  ]
+}
