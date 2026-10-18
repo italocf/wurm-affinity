@@ -6,18 +6,19 @@
     <title>Wurm Online - Gerador Automático de Afinidades & Moonshine</title>
     <style>
         :root {
-            --bg-main: #020617;
-            --bg-card: rgba(15, 23, 42, 0.92);
-            --bg-input: #1e293b;
-            --border-color: rgba(217, 119, 6, 0.4);
-            --border-subtle: #334155;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --amber-main: #f59e0b;
-            --amber-bright: #fbbf24;
-            --amber-glow: rgba(245, 158, 11, 0.35);
-            --green-main: #22c55e;
-            --red-main: #ef4444;
+            --bg-main: #0a0a0a;
+            --bg-card: #141414;
+            --bg-input: #1a1a1a;
+            --border-color: #2f2f2f;
+            --border-subtle: #2a2a2a;
+            --border-strong: #3f3f3f;
+            --text-main: #f5f5f5;
+            --text-muted: #b8b8b8;
+            --text-subtle: #8f8f8f;
+            --accent: #ffffff;
+            --accent-muted: #e5e5e5;
+            --surface: #1b1b1b;
+            --surface-hover: #222222;
         }
 
         * {
@@ -25,14 +26,16 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            background-color: var(--bg-main);
-            background-image: radial-gradient(circle at 50% -20%, #312e81 0%, #020617 75%);
+            background: radial-gradient(1400px 900px at 50% -15%, #242424, var(--bg-main));
             color: var(--text-main);
             min-height: 100vh;
-            padding-bottom: 60px;
+            padding-bottom: 64px;
+            line-height: 1.6;
         }
 
         .container {
@@ -41,10 +44,32 @@
             padding: 0 16px;
         }
 
+        /* Smooth theme transition */
+        body,
+        nav,
+        .card,
+        .options-card,
+        .result-card,
+        .btn-action,
+        .lang-switch,
+        .lang-btn,
+        .badge-offline,
+        .veggie-chip,
+        .oven-btn,
+        .stat-box,
+        .ing-item,
+        .opt-toggle-box,
+        select,
+        .info-pill,
+        .player-badge,
+        .logo-icon {
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
         /* Navbar */
         nav {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(12px);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(10, 10, 10, 0.9) 100%);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
@@ -54,7 +79,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            height: 72px;
+            gap: 16px;
+            flex-wrap: wrap;
         }
         .logo-box {
             display: flex;
@@ -64,86 +91,100 @@
         .logo-icon {
             width: 44px;
             height: 44px;
-            background: rgba(245, 158, 11, 0.2);
-            border: 1px solid var(--border-color);
+            background: var(--surface);
+            border: 1px solid var(--border-strong);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.25s ease, background-color 0.4s ease, border-color 0.4s ease;
+        }
+        .logo-icon:hover {
+            transform: scale(1.05);
+        }
+        .logo-icon:active {
+            transform: scale(0.98);
         }
         .logo-text h1 {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
-            background: linear-gradient(90deg, #fde047, #f59e0b, #d97706);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.2px;
+            color: var(--text-main);
         }
         .logo-text p {
             font-size: 11px;
-            color: var(--text-muted);
+            color: var(--text-subtle);
+            margin-top: 2px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
         }
 
         .badge-offline {
-            background: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
-            border: 1px solid rgba(34, 197, 94, 0.4);
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-strong);
             padding: 5px 12px;
-            border-radius: 20px;
+            border-radius: 999px;
             font-size: 11px;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
         }
         .badge-offline::before {
             content: "";
-            width: 7px;
-            height: 7px;
-            background: #22c55e;
+            width: 6px;
+            height: 6px;
+            background: var(--text-main);
             border-radius: 50%;
+            opacity: 0.8;
         }
 
         /* Language Switcher */
         .lang-switch {
             display: inline-flex;
-            background: rgba(30, 41, 59, 0.7);
+            background: var(--surface);
             border: 1px solid var(--border-subtle);
-            border-radius: 20px;
+            border-radius: 999px;
             padding: 3px;
             gap: 2px;
         }
         .lang-btn {
             background: none;
             border: 1px solid transparent;
-            color: var(--text-muted);
+            color: var(--text-subtle);
             padding: 4px 10px;
-            border-radius: 16px;
+            border-radius: 999px;
             font-size: 11px;
-            font-weight: 800;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            letter-spacing: 0.3px;
         }
         .lang-btn:hover {
             color: var(--text-main);
         }
         .lang-btn.active {
-            background: rgba(245, 158, 11, 0.22);
-            color: #fde047;
-            border-color: rgba(245, 158, 11, 0.45);
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+            background: var(--surface-hover);
+            color: var(--text-main);
+            border-color: var(--border-strong);
         }
 
         /* Cards */
         .card {
-            background: var(--bg-card);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, transparent 100%);
             border: 1px solid var(--border-color);
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 40px -30px rgba(255, 255, 255, 0.25);
             margin-top: 20px;
         }
 
@@ -156,20 +197,22 @@
         .step-number {
             width: 28px;
             height: 28px;
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--amber-bright);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+            background: var(--surface);
+            color: var(--text-main);
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
+            letter-spacing: 0.5px;
         }
         .step-header h2 {
             font-size: 16px;
             font-weight: 800;
-            color: #f1f5f9;
+            color: var(--text-main);
+            letter-spacing: 0.2px;
         }
 
         /* Inputs */
@@ -177,40 +220,57 @@
             display: block;
             font-size: 13px;
             font-weight: 700;
-            color: var(--amber-bright);
+            color: var(--text-main);
             margin-bottom: 8px;
+            letter-spacing: 0.2px;
         }
         select {
             width: 100%;
             background: var(--bg-input);
             border: 1px solid var(--border-subtle);
             color: var(--text-main);
-            padding: 14px 16px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
             outline: none;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
             cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23b8b8b8' d='M1.41.59 6 5.17 10.59.59 12 2 6 8 0 2z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+        }
+        [data-theme="light"] select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23000000' d='M1.41.59 6 5.17 10.59.59 12 2 6 8 0 2z'/%3E%3C/svg%3E");
+        }
+        select:hover {
+            border-color: var(--border-strong);
         }
         select:focus {
-            border-color: var(--amber-main);
-            box-shadow: 0 0 0 3px var(--amber-glow);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
+        }
+
+        select option {
+            background: var(--bg-input);
+            color: var(--text-main);
         }
 
         .info-pill {
-            background: rgba(180, 83, 9, 0.15);
-            border-left: 4px solid var(--amber-main);
-            padding: 10px 14px;
+            background: var(--surface);
+            border-left: 3px solid var(--border-strong);
+            padding: 9px 14px;
             border-radius: 0 8px 8px 0;
             font-size: 12px;
-            color: #fef08a;
+            color: var(--text-muted);
             margin-bottom: 14px;
         }
 
         .player-badge {
-            background: rgba(180, 83, 9, 0.25);
-            border: 1px solid rgba(245, 158, 11, 0.45);
+            background: var(--surface);
+            border: 1px solid var(--border-strong);
             border-radius: 12px;
             padding: 10px 18px;
             text-align: center;
@@ -218,23 +278,25 @@
         }
         .player-badge small {
             font-size: 10px;
-            color: var(--amber-main);
+            color: var(--text-subtle);
             text-transform: uppercase;
             font-weight: 800;
             display: block;
+            letter-spacing: 0.6px;
         }
         .player-badge span {
             font-size: 30px;
             font-weight: 900;
             font-family: monospace;
-            color: #fef08a;
+            color: var(--text-main);
+            margin-top: 4px;
+            display: block;
         }
-
 
         /* Options Box / Preferences */
         .options-card {
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(245, 158, 11, 0.35);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, transparent 100%);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 18px 22px;
             margin-top: 18px;
@@ -242,185 +304,198 @@
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            gap: 12px;
             margin-top: 12px;
         }
         @media (max-width: 700px) {
             .options-grid { grid-template-columns: 1fr; }
         }
         .opt-toggle-box {
-            background: rgba(30, 41, 59, 0.6);
+            background: var(--surface);
             border: 1px solid var(--border-subtle);
             border-radius: 12px;
             padding: 12px 16px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
             display: flex;
             align-items: flex-start;
             gap: 12px;
             user-select: none;
         }
         .opt-toggle-box:hover {
-            border-color: var(--amber-main);
-            background: rgba(30, 41, 59, 0.85);
+            border-color: var(--border-strong);
+            background: var(--surface-hover);
         }
         .opt-toggle-box input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             margin-top: 2px;
-            accent-color: var(--amber-main);
+            accent-color: var(--accent);
             cursor: pointer;
             flex-shrink: 0;
         }
         .opt-title {
             font-size: 13px;
             font-weight: 800;
-            color: #fef08a;
+            color: var(--text-main);
             display: flex;
             align-items: center;
             gap: 6px;
+            letter-spacing: 0.2px;
         }
         .opt-desc {
             font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 3px;
-            line-height: 1.4;
+            color: var(--text-subtle);
+            margin-top: 4px;
+            line-height: 1.5;
         }
 
         /* Veggie Chips */
         .veggie-chip {
-            background: rgba(30, 41, 59, 0.7);
+            background: var(--surface);
             border: 1px solid var(--border-subtle);
-            color: #cbd5e1;
+            color: var(--text-muted);
             padding: 6px 12px;
-            border-radius: 8px;
+            border-radius: 999px;
             font-size: 11px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.15s;
+            transition: all 0.15s ease;
             display: inline-flex;
             align-items: center;
             gap: 6px;
             user-select: none;
+            letter-spacing: 0.2px;
+        }
+        .veggie-chip:hover {
+            border-color: var(--border-strong);
+            color: var(--text-main);
         }
         .veggie-chip.active {
-            background: rgba(34, 197, 94, 0.2);
-            border-color: rgba(34, 197, 94, 0.6);
-            color: #86efac;
+            background: var(--surface-hover);
+            border-color: var(--border-strong);
+            color: var(--text-main);
+        }
+        [data-theme="light"] .veggie-chip {
+            color: #000000;
+        }
+        [data-theme="light"] .veggie-chip.disabled {
+            color: #444444;
+            opacity: 0.75;
         }
         .veggie-chip.disabled {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: rgba(239, 68, 68, 0.35);
-            color: #fca5a5;
+            background: transparent;
+            border-color: var(--border-subtle);
+            color: var(--text-subtle);
             text-decoration: line-through;
             opacity: 0.6;
         }
 
         /* Result Section */
         .result-card {
-            background: rgba(15, 23, 42, 0.95);
-            border: 2px solid var(--amber-main);
-            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, transparent 100%);
+            border: 1px solid var(--border-strong);
+            border-radius: 18px;
             padding: 26px;
-            box-shadow: 0 0 40px rgba(245, 158, 11, 0.2);
+            box-shadow: 0 30px 50px -40px rgba(255, 255, 255, 0.4);
             margin-top: 22px;
+        }
+
+        #res_title {
+            color: var(--text-main);
         }
         .result-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-bottom: 16px;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.7);
+            border-bottom: 1px solid var(--border-color);
             flex-wrap: wrap;
             gap: 12px;
         }
         .badge-tag {
             padding: 5px 12px;
-            border-radius: 14px;
+            border-radius: 999px;
             font-size: 11px;
             font-weight: 800;
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            border: 1px solid var(--border-strong);
+            color: var(--text-muted);
+            background: transparent;
         }
         .badge-green {
-            background: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
-            border: 1px solid rgba(34, 197, 94, 0.4);
+            border-color: var(--border-strong);
+            color: var(--text-main);
         }
         .badge-blue {
-            background: rgba(59, 130, 246, 0.15);
-            color: #60a5fa;
-            border: 1px solid rgba(59, 130, 246, 0.4);
+            border-color: var(--border-strong);
+            color: var(--text-muted);
         }
         .badge-orange {
-            background: rgba(245, 158, 11, 0.15);
-            color: #fbbf24;
-            border: 1px solid rgba(245, 158, 11, 0.4);
+            border-color: var(--border-strong);
+            color: var(--text-muted);
         }
         .badge-purple {
-            background: rgba(168, 85, 247, 0.15);
-            color: #c084fc;
-            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-color: var(--border-strong);
+            color: var(--text-muted);
         }
 
         /* Oven Rarity Selector */
         .oven-tabs {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-top: 8px;
             margin-bottom: 6px;
             flex-wrap: wrap;
         }
         .oven-btn {
-            background: rgba(30, 41, 59, 0.5);
+            background: var(--surface);
             border: 1px solid var(--border-subtle);
-            color: var(--text-muted);
-            padding: 8px 16px;
-            border-radius: 10px;
+            color: var(--text-subtle);
+            padding: 8px 14px;
+            border-radius: 999px;
             font-size: 12px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            letter-spacing: 0.2px;
         }
         .oven-btn:hover {
-            color: var(--amber-main);
-            border-color: rgba(245, 158, 11, 0.4);
+            color: var(--text-main);
+            border-color: var(--border-strong);
         }
         .oven-btn.active {
-            background: rgba(245, 158, 11, 0.2);
-            color: #fde047;
-            border-color: var(--amber-main);
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+            background: var(--surface-hover);
+            color: var(--text-main);
+            border-color: var(--border-strong);
         }
-        .oven-btn.rarity-rare.active {
-            background: rgba(59, 130, 246, 0.2);
-            color: #93c5fd;
-            border-color: #3b82f6;
-            box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
-        }
+        .oven-btn.rarity-rare.active,
         .oven-btn.rarity-supreme.active {
-            background: rgba(168, 85, 247, 0.2);
-            color: #d8b4fe;
-            border-color: #a855f7;
-            box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
+            background: var(--surface-hover);
+            color: var(--text-main);
+            border-color: var(--border-strong);
+            box-shadow: none;
         }
 
         /* Stats Row */
         .stats-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 10px;
             margin: 18px 0;
         }
         @media (max-width: 600px) {
             .stats-row { grid-template-columns: 1fr; }
         }
         .stat-box {
-            background: rgba(30, 41, 59, 0.5);
+            background: var(--surface);
             border: 1px solid var(--border-subtle);
             border-radius: 10px;
             padding: 12px;
@@ -428,15 +503,17 @@
         }
         .stat-box small {
             font-size: 10px;
-            color: var(--text-muted);
+            color: var(--text-subtle);
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: 0.6px;
         }
         .stat-box strong {
             display: block;
-            font-size: 15px;
-            color: #fbbf24;
-            margin-top: 3px;
+            font-size: 14px;
+            color: var(--text-main);
+            margin-top: 4px;
+            font-weight: 800;
         }
 
         /* Ingredient List */
@@ -444,28 +521,29 @@
             list-style: none;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
             margin-top: 14px;
         }
         @media (max-width: 650px) {
             .ing-grid { grid-template-columns: 1fr; }
         }
         .ing-item {
-            background: rgba(30, 41, 59, 0.7);
+            background: var(--surface);
             border: 1px solid var(--border-subtle);
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-radius: 10px;
             font-size: 13px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         .ing-num {
             width: 24px;
             height: 24px;
-            background: rgba(245, 158, 11, 0.25);
-            color: #fbbf24;
-            border-radius: 50%;
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-strong);
+            border-radius: 999px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -477,33 +555,183 @@
 
         /* Buttons */
         .btn-action {
-            background: rgba(30, 41, 59, 0.85);
+            background: var(--surface);
             border: 1px solid var(--border-subtle);
-            color: #e2e8f0;
-            padding: 10px 16px;
-            border-radius: 10px;
+            color: var(--text-muted);
+            padding: 9px 14px;
+            border-radius: 999px;
             font-size: 12px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            letter-spacing: 0.2px;
         }
         .btn-action:hover {
-            border-color: var(--amber-main);
-            color: var(--amber-main);
-            background: #1e293b;
+            border-color: var(--border-strong);
+            color: var(--text-main);
+            background: var(--surface-hover);
         }
         .btn-copy {
-            background: rgba(16, 185, 129, 0.2);
-            border: 1px solid rgba(16, 185, 129, 0.5);
-            color: #6ee7b7;
+            background: var(--surface-hover);
+            border: 1px solid var(--border-strong);
+            color: var(--text-main);
         }
         .btn-copy:hover {
-            background: rgba(16, 185, 129, 0.35);
-            color: #a7f3d0;
-            border-color: #34d399;
+            border-color: var(--accent-muted);
+        }
+
+        /* Light theme */
+        [data-theme="light"] {
+            --bg-main: #ffffff;
+            --bg-card: #f7f7f7;
+            --bg-input: #ffffff;
+            --border-color: #cccccc;
+            --border-subtle: #d8d8d8;
+            --border-strong: #bbbbbb;
+            --text-main: #000000;
+            --text-muted: #111111;
+            --text-subtle: #222222;
+            --accent: #000000;
+            --accent-muted: #000000;
+            --surface: #eaeaea;
+            --surface-hover: #dcdcdc;
+        }
+
+        [data-theme="light"] body {
+            background: #ffffff;
+        }
+
+        [data-theme="light"] nav {
+            background: #ffffff;
+            backdrop-filter: none;
+        }
+
+        [data-theme="light"] .card,
+        [data-theme="light"] .options-card,
+        [data-theme="light"] .result-card {
+            background: #f5f5f5;
+            box-shadow: 0 20px 40px -30px rgba(0, 0, 0, 0.25);
+        }
+
+        [data-theme="light"] .logo-icon,
+        [data-theme="light"] .badge-offline,
+        [data-theme="light"] .lang-switch,
+        [data-theme="light"] .veggie-chip,
+        [data-theme="light"] .oven-btn,
+        [data-theme="light"] .stat-box,
+        [data-theme="light"] .ing-item,
+        [data-theme="light"] .opt-toggle-box,
+        [data-theme="light"] .info-pill,
+        [data-theme="light"] .player-badge,
+        [data-theme="light"] .btn-action {
+            background: #e5e5e5;
+        }
+
+        [data-theme="light"] #txt_res_tag {
+            color: #000000;
+        }
+
+        [data-theme="light"] .lang-btn.active,
+        [data-theme="light"] .oven-btn.active,
+        [data-theme="light"] .veggie-chip.active,
+        [data-theme="light"] .btn-action:hover,
+        [data-theme="light"] .opt-toggle-box:hover,
+        [data-theme="light"] .btn-copy {
+            background: #d6d6d6;
+        }
+
+        [data-theme="light"] select {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        [data-theme="light"] select option {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        [data-theme="light"] .badge-tag {
+            background: transparent;
+            color: #000000;
+            border-color: #000000;
+        }
+
+        [data-theme="light"] .badge-green,
+        [data-theme="light"] .badge-blue,
+        [data-theme="light"] .badge-orange,
+        [data-theme="light"] .badge-purple {
+            color: #000000;
+            border-color: #000000;
+        }
+
+        [data-theme="light"] label,
+        [data-theme="light"] .opt-title,
+        [data-theme="light"] .stat-box strong,
+        [data-theme="light"] .player-badge span,
+        [data-theme="light"] .step-header h2,
+        [data-theme="light"] .logo-text h1,
+        [data-theme="light"] .lang-btn,
+        [data-theme="light"] .btn-action,
+        [data-theme="light"] .badge-offline,
+        [data-theme="light"] .veggie-chip.active,
+        [data-theme="light"] .oven-btn,
+        [data-theme="light"] .ing-item span:last-child,
+        [data-theme="light"] label,
+        [data-theme="light"] #txt_res_tag,
+        [data-theme="light"] #txt_test_prefix,
+        [data-theme="light"] #txt_test_formula,
+        [data-theme="light"] #test_total_val,
+        [data-theme="light"] #test_oven_val {
+            color: #000000;
+        }
+
+        [data-theme="light"] #txt_oven_rarity_lbl,
+        [data-theme="light"] #txt_veggies_lbl,
+        [data-theme="light"] #txt_ing_list_lbl {
+            color: #000000;
+        }
+
+        [data-theme="light"] .info-pill {
+            color: #000000;
+            border-left-color: #000000;
+            background: #e5e5e5;
+        }
+
+        [data-theme="light"] .opt-desc,
+        [data-theme="light"] .logo-text p,
+        [data-theme="light"] .stat-box small,
+        [data-theme="light"] .player-badge small,
+        [data-theme="light"] #txt_oven_hint,
+        [data-theme="light"] #oven_desc_badge,
+        [data-theme="light"] #res_prep_note,
+        [data-theme="light"] #txt_options_desc,
+        [data-theme="light"] #txt_same_oven_span {
+            color: #111111;
+        }
+
+        [data-theme="light"] #res_math {
+            color: #000000;
+        }
+
+        [data-theme="light"] .ing-num {
+            color: #000000;
+            border-color: #999999;
+        }
+
+        [data-theme="light"] select:hover {
+            border-color: #999999;
+        }
+
+        [data-theme="light"] select:focus {
+            border-color: #000000;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.12);
+        }
+
+        [data-theme="light"] #target_affinity {
+            color: #000000;
         }
     </style>
 </head>
@@ -513,19 +741,18 @@
     <nav>
         <div class="container nav-inner">
             <div class="logo-box">
-                <div class="logo-icon">🌙</div>
+                <div class="logo-icon" id="themeToggle" role="button" tabindex="0" aria-label="Alternar tema" title="Alternar tema claro/escuro">🌙</div>
                 <div class="logo-text">
                     <h1 id="txt_nav_title">Wurm Affinity & Moonshine Generator</h1>
-                    <p id="txt_nav_subtitle">Cálculo 100% Preciso • Sem Repetições • Filtro Sem Fried (Offline)</p>
                 </div>
             </div>
             <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                 <!-- Language Switcher: PT-BR (default) & EN -->
                 <div class="lang-switch">
-                    <button type="button" class="lang-btn active" id="btn_lang_pt" onclick="setLanguage('pt')" title="Português (Brasil)">
+                    <button type="button" class="lang-btn" id="btn_lang_pt" onclick="setLanguage('pt')" title="Português (Brasil)">
                         <span>🇧🇷</span> <span>PT-BR</span>
                     </button>
-                    <button type="button" class="lang-btn" id="btn_lang_en" onclick="setLanguage('en')" title="English">
+                    <button type="button" class="lang-btn active" id="btn_lang_en" onclick="setLanguage('en')" title="English">
                         <span>🇺🇸</span> <span>EN</span>
                     </button>
                 </div>
@@ -550,10 +777,10 @@
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;">
                 <div style="flex: 1; min-width: 280px;">
                     <label id="txt_tasted_label">Qual afinidade deu quando você provou esse prato de teste?</label>
-                    <select id="calib_tasted_affinity" onchange="onTastedChange()">
+                    <select id="calib_tasted_affinity" onchange="onTastedChange()" style="color: var(--text-main);">
                         <!-- Filled by JS with 138 skills -->
                     </select>
-                    <label style="font-size: 11px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; cursor: pointer;">
+                    <label style="font-size: 11px; color: var(--text-main); display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; cursor: pointer;">
                         <input type="checkbox" id="test_in_same_oven" onchange="onTastedChange()">
                         <span id="txt_same_oven_span">O prato de teste foi assado no mesmo forno (<span id="test_oven_name">Normal</span>)?</span>
                     </label>
@@ -575,7 +802,7 @@
 
             <div>
                 <label style="font-size: 14px;" id="txt_target_label">Selecione a afinidade que você quer no seu Moonshine:</label>
-                <select id="target_affinity" onchange="generateAutomatically()" style="font-size: 16px; font-weight: 800; color: #fef08a; border-color: rgba(245, 158, 11, 0.6);">
+                <select id="target_affinity" onchange="generateAutomatically()" style="font-size: 16px; font-weight: 800; border-color: var(--border-strong); color: var(--text-main);">
                     <!-- Filled by JS -->
                 </select>
             </div>
@@ -594,7 +821,7 @@
             <!-- SELETOR DE RARIDADE DO FORNO (OVEN) -->
             <div style="margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid rgba(51, 65, 85, 0.6);">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
-                    <span id="txt_oven_rarity_lbl" style="font-size: 12px; font-weight: 700; color: var(--amber-bright);">
+                    <span id="txt_oven_rarity_lbl" style="font-size: 12px; font-weight: 700; color: var(--text-main);">
                         🔥 Raridade do Forno (Oven Cooker):
                     </span>
                     <span id="oven_desc_badge" style="font-size: 11px; color: var(--text-muted);">
@@ -651,7 +878,7 @@
             <!-- Filtro de Vegetais Disponíveis -->
             <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(51, 65, 85, 0.6);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
-                    <span id="txt_veggies_lbl" style="font-size: 12px; font-weight: 700; color: var(--amber-bright);">🥕 Vegetais que você tem disponíveis (clique para desmarcar se faltar algum):</span>
+                    <span id="txt_veggies_lbl" style="font-size: 12px; font-weight: 700; color: var(--text-main);">🥕 Vegetais que você tem disponíveis (clique para desmarcar se faltar algum):</span>
                     <div>
                         <button type="button" id="btn_mark_all" onclick="toggleAllVeggies(true)" style="background: none; border: none; color: #60a5fa; font-size: 11px; cursor: pointer; font-weight: 700; margin-right: 10px;">Marcar Todos</button>
                         <button type="button" id="btn_clear_all" onclick="toggleAllVeggies(false)" style="background: none; border: none; color: var(--text-muted); font-size: 11px; cursor: pointer; font-weight: 700;">Limpar</button>
@@ -668,12 +895,12 @@
             <div class="result-header">
                 <div>
                     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                        <span id="txt_res_tag" style="font-size: 10px; text-transform: uppercase; color: var(--amber-main); font-weight: 800; letter-spacing: 0.5px;">Receita Gerada</span>
+                        <span id="txt_res_tag" style="font-size: 10px; text-transform: uppercase; color: var(--text-main); font-weight: 800; letter-spacing: 0.5px;">Receita Gerada</span>
                         <span id="txt_badge_unique" class="badge-tag badge-blue">✓ Itens 100% Únicos</span>
                         <span id="badge_fried_status" class="badge-tag badge-green">✓ Sem Fried</span>
                         <span id="badge_oven_status" class="badge-tag" style="background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3);">⚪ Forno Normal</span>
                     </div>
-                    <h3 id="res_title" style="font-size: 24px; font-weight: 900; color: #fef08a; margin-top: 4px;">Moonshine para Sickle</h3>
+                    <h3 id="res_title" style="font-size: 24px; font-weight: 900; margin-top: 4px;">Moonshine para Sickle</h3>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                     <button class="btn-action btn-copy" onclick="copyRecipeToClipboard()" id="btn_copy">
@@ -704,7 +931,7 @@
             </div>
 
             <div>
-                <label id="txt_ing_list_lbl" style="font-size: 12px; text-transform: uppercase; color: var(--text-muted); font-weight: 800; letter-spacing: 0.5px;">
+                <label id="txt_ing_list_lbl" style="font-size: 12px; text-transform: uppercase; color: var(--text-main); font-weight: 800; letter-spacing: 0.5px;">
                     Lista de Ingredientes Únicos & Cortes no Jogo:
                 </label>
                 <ul class="ing-grid" id="res_ingredients">
@@ -714,7 +941,7 @@
 
             <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(51, 65, 85, 0.6); font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
                 <span id="res_prep_note">💡 <strong>Modo de Preparo:</strong> Coloque o Cauldron no Oven, adicione Água, Açúcar e os vegetais cortados conforme a lista.</span>
-                <span style="font-family: monospace; color: var(--amber-bright); font-weight: 700;"><span id="txt_proof_lbl">Prova:</span> <span id="res_math">Total mod 138 + Player = 41</span></span>
+                <span style="font-family: monospace; color: var(--text-main); font-weight: 700;"><span id="txt_proof_lbl">Prova:</span> <span id="res_math">Total mod 138 + Player = 41</span></span>
             </div>
         </div>
 
@@ -789,7 +1016,7 @@
         const FIXED_TEST_TOTAL = 178;
         let playerNumber = 25;
         let currentGeneratedRecipe = null;
-        let currentLang = 'pt'; // PT-BR default
+        let currentLang = 'en'; // English default
 
         // Oven Rarity Config
         const OVEN_CONFIG = {
@@ -834,7 +1061,7 @@
             pt: {
                 page_title: "Wurm Online - Gerador Automático de Afinidades & Moonshine",
                 nav_title: "Wurm Affinity & Moonshine Generator",
-                nav_subtitle: "Cálculo 100% Preciso • Sem Repetições • Filtro Sem Fried (Offline)",
+                nav_subtitle: "",
                 badge_offline: "Modo Offline Ativo",
                 step1_title: "Sua Afinidade Atual no Teste Base",
                 test_prefix: "Teste Padrão:",
@@ -885,7 +1112,7 @@
             en: {
                 page_title: "Wurm Online - Automatic Affinity & Moonshine Generator",
                 nav_title: "Wurm Affinity & Moonshine Generator",
-                nav_subtitle: "100% Accurate Calculation • Duplicate-Free • No-Fried Filter (Offline)",
+                nav_subtitle: "",
                 badge_offline: "Offline Mode Active",
                 step1_title: "Your Current Affinity from Base Test",
                 test_prefix: "Standard Test:",
@@ -934,6 +1161,21 @@
                 clipboard_ing_header: "Ingredients:"
             }
         };
+
+        function refreshSelectText() {
+            const tastedSelect = document.getElementById('calib_tasted_affinity');
+            const targetSelect = document.getElementById('target_affinity');
+            [tastedSelect, targetSelect].forEach(sel => {
+                if (!sel) return;
+                for (let i = 0; i < sel.options.length; i++) {
+                    const opt = sel.options[i];
+                    const skill = SKILLS.find(s => String(s.id) === opt.value);
+                    const name = skill ? skill.name : (opt.dataset.name || opt.text.split(' (')[0]);
+                    opt.dataset.name = name;
+                    opt.text = `${name} (#${opt.value})`;
+                }
+            });
+        }
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -1003,8 +1245,27 @@
             if (document.getElementById('txt_ing_list_lbl')) document.getElementById('txt_ing_list_lbl').innerText = t.ing_list_lbl;
             if (document.getElementById('txt_proof_lbl')) document.getElementById('txt_proof_lbl').innerText = t.proof_lbl;
 
+            refreshSelectText();
             renderVeggieChips();
             generateAutomatically();
+        }
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                toggle.textContent = theme === 'light' ? '☀️' : '🌙';
+            }
+            try {
+                localStorage.setItem('wurm-affinity-theme', theme);
+            } catch (e) {
+                // ignore
+            }
+        }
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            applyTheme(current === 'dark' ? 'light' : 'dark');
         }
 
         function init() {
@@ -1015,13 +1276,36 @@
             sorted.forEach(s => {
                 tastedSelect.add(new Option(`${s.name} (#${s.id})`, s.id));
                 targetSelect.add(new Option(`${s.name} (#${s.id})`, s.id));
+                tastedSelect.options[tastedSelect.options.length - 1].dataset.name = s.name;
+                targetSelect.options[targetSelect.options.length - 1].dataset.name = s.name;
             });
 
             tastedSelect.value = "65"; // Default Large Maul
             targetSelect.value = "65"; // Default Large Maul
+            refreshSelectText();
 
-            // Set PT-BR as default
-            setLanguage('pt');
+            const savedTheme = (() => {
+                try {
+                    return localStorage.getItem('wurm-affinity-theme');
+                } catch (e) {
+                    return null;
+                }
+            })();
+            applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+                themeToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleTheme();
+                    }
+                });
+            }
+
+            // Set English as default
+            setLanguage('en');
             onTastedChange();
         }
 
@@ -1218,7 +1502,7 @@
                 li.className = "ing-item";
                 li.innerHTML = `
                     <span class="ing-num">${idx + 1}</span>
-                    <span style="font-weight: 600; color: #f1f5f9;">${item.text}</span>
+                    <span style="font-weight: 600; color: var(--text-main);">${item.text}</span>
                 `;
                 ul.appendChild(li);
             });
