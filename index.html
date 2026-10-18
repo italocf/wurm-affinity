@@ -583,6 +583,19 @@
             border-color: var(--accent-muted);
         }
 
+        /* Small parenthetical text */
+        .paren {
+            font-size: 0.8em;
+            font-weight: 500;
+            opacity: 0.75;
+        }
+
+        /* Full test formula line: small but readable (no opacity drop) */
+        #test_info_pill .paren {
+            font-size: 0.85em;
+            opacity: 1;
+        }
+
         /* Light theme */
         [data-theme="light"] {
             --bg-main: #ffffff;
@@ -741,7 +754,7 @@
     <nav>
         <div class="container nav-inner">
             <div class="logo-box">
-                <div class="logo-icon" id="themeToggle" role="button" tabindex="0" aria-label="Alternar tema" title="Alternar tema claro/escuro">🌙</div>
+                <div class="logo-icon" id="themeToggle" role="button" tabindex="0" aria-label="Alternar tema" title="Alternar tema claro/escuro"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></div>
                 <div class="logo-text">
                     <h1 id="txt_nav_title">Wurm Affinity & Moonshine Generator</h1>
                 </div>
@@ -750,10 +763,10 @@
                 <!-- Language Switcher: PT-BR (default) & EN -->
                 <div class="lang-switch">
                     <button type="button" class="lang-btn" id="btn_lang_pt" onclick="setLanguage('pt')" title="Português (Brasil)">
-                        <span>🇧🇷</span> <span>PT-BR</span>
+                        <span>PT-br</span>
                     </button>
                     <button type="button" class="lang-btn active" id="btn_lang_en" onclick="setLanguage('en')" title="English">
-                        <span>🇺🇸</span> <span>EN</span>
+                        <span>EN</span>
                     </button>
                 </div>
                 <span class="badge-offline" id="txt_badge_offline">Modo Offline Ativo</span>
@@ -771,9 +784,8 @@
             </div>
 
             <div class="info-pill" id="test_info_pill">
-                💡 <strong id="txt_test_prefix">Teste Padrão:</strong> <span id="txt_test_formula"><span id="txt_test_oven_word">Forno</span> (<span id="test_oven_val">+40</span>) + Frying Pan (+75) + Bear (+16) + Corn (+44) + Base (+3) = <strong id="test_total_val">178</strong></span>
+                <span class="paren"><strong id="txt_test_prefix">Teste Padrão:</strong> <span id="txt_test_formula"><span id="txt_test_oven_word">Forno</span> (<span id="test_oven_val">+40</span>) + Frying Pan (+75) + Bear (+16) + Corn (+44) + Base (+3) = <strong id="test_total_val">178</strong></span></span>
             </div>
-
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;">
                 <div style="flex: 1; min-width: 280px;">
                     <label id="txt_tasted_label">Qual afinidade deu quando você provou esse prato de teste?</label>
@@ -782,7 +794,7 @@
                     </select>
                     <label style="font-size: 11px; color: var(--text-main); display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; cursor: pointer;">
                         <input type="checkbox" id="test_in_same_oven" onchange="onTastedChange()">
-                        <span id="txt_same_oven_span">O prato de teste foi assado no mesmo forno (<span id="test_oven_name">Normal</span>)?</span>
+                        <span id="txt_same_oven_span">O prato de teste foi assado no mesmo forno (<span id="test_oven_name" class="paren">Normal</span>)?</span>
                     </label>
                 </div>
 
@@ -811,7 +823,6 @@
         <!-- QUADRADO DE OPÇÕES & PREFERÊNCIAS DE PREPARO -->
         <div class="options-card">
             <div class="step-header" style="margin-bottom: 4px;">
-                <span style="font-size: 18px;">⚙️</span>
                 <h2 id="txt_options_title">Opções de Preparo & Ingredientes</h2>
             </div>
             <p id="txt_options_desc" style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
@@ -822,7 +833,7 @@
             <div style="margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid rgba(51, 65, 85, 0.6);">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;">
                     <span id="txt_oven_rarity_lbl" style="font-size: 12px; font-weight: 700; color: var(--text-main);">
-                        🔥 Raridade do Forno (Oven Cooker):
+                        Raridade do Forno <span class="paren">(Oven Cooker)</span>:
                     </span>
                     <span id="oven_desc_badge" style="font-size: 11px; color: var(--text-muted);">
                         Forno normal (+40 de base)
@@ -830,20 +841,17 @@
                 </div>
                 <div class="oven-tabs">
                     <button type="button" class="oven-btn active" id="btn_oven_normal" onclick="setOvenRarity('normal')">
-                        <span>⚪</span>
                         <span id="txt_btn_oven_normal">Normal (+0) [Padrão]</span>
                     </button>
                     <button type="button" class="oven-btn rarity-rare" id="btn_oven_rare" onclick="setOvenRarity('rare')">
-                        <span>🔵</span>
                         <span id="txt_btn_oven_rare">Rara (+1)</span>
                     </button>
                     <button type="button" class="oven-btn rarity-supreme" id="btn_oven_supreme" onclick="setOvenRarity('supreme')">
-                        <span>🟣</span>
                         <span id="txt_btn_oven_supreme">Suprema (+2)</span>
                     </button>
                 </div>
                 <div id="txt_oven_hint" style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
-                    💡 <em>O forno Raro adiciona +1 e o Supremo adiciona +2 no cozimento. O gerador recalcula os ingredientes para a afinidade bater 100% exata!</em>
+                    <em>O forno Raro adiciona +1 e o Supremo adiciona +2 no cozimento. O gerador recalcula os ingredientes para a afinidade bater 100% exata!</em>
                 </div>
             </div>
 
@@ -853,7 +861,7 @@
                     <input type="checkbox" id="opt_no_fried" checked onchange="generateAutomatically()">
                     <div>
                         <div class="opt-title" id="txt_no_fried_title">
-                            <span>🚫 NÃO usar "Fried" (Fritar)</span>
+                            <span>NÃO usar "Fried" <span class="paren">(Fritar)</span></span>
                         </div>
                         <div class="opt-desc" id="txt_no_fried_desc">
                             Gera receitas usando apenas cru (<strong>Whole</strong>) ou picado (<strong>Chopped</strong>). Evita ter que usar a frigideira para pré-fritar antes de misturar!
@@ -866,7 +874,7 @@
                     <input type="checkbox" id="opt_min_cuts" onchange="generateAutomatically()">
                     <div>
                         <div class="opt-title" id="txt_min_cuts_title">
-                            <span>🔪 Priorizar "Whole" (Menos Cortes)</span>
+                            <span>Priorizar "Whole" <span class="paren">(Menos Cortes)</span></span>
                         </div>
                         <div class="opt-desc" id="txt_min_cuts_desc">
                             Tenta usar a maior quantidade possível de vegetais inteiros, reduzindo a necessidade de usar a faca.
@@ -878,7 +886,7 @@
             <!-- Filtro de Vegetais Disponíveis -->
             <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(51, 65, 85, 0.6);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
-                    <span id="txt_veggies_lbl" style="font-size: 12px; font-weight: 700; color: var(--text-main);">🥕 Vegetais que você tem disponíveis (clique para desmarcar se faltar algum):</span>
+                    <span id="txt_veggies_lbl" style="font-size: 12px; font-weight: 700; color: var(--text-main);">Vegetais que você tem disponíveis <span class="paren">(clique para desmarcar se faltar algum)</span>:</span>
                     <div>
                         <button type="button" id="btn_mark_all" onclick="toggleAllVeggies(true)" style="background: none; border: none; color: #60a5fa; font-size: 11px; cursor: pointer; font-weight: 700; margin-right: 10px;">Marcar Todos</button>
                         <button type="button" id="btn_clear_all" onclick="toggleAllVeggies(false)" style="background: none; border: none; color: var(--text-muted); font-size: 11px; cursor: pointer; font-weight: 700;">Limpar</button>
@@ -898,17 +906,15 @@
                         <span id="txt_res_tag" style="font-size: 10px; text-transform: uppercase; color: var(--text-main); font-weight: 800; letter-spacing: 0.5px;">Receita Gerada</span>
                         <span id="txt_badge_unique" class="badge-tag badge-blue">✓ Itens 100% Únicos</span>
                         <span id="badge_fried_status" class="badge-tag badge-green">✓ Sem Fried</span>
-                        <span id="badge_oven_status" class="badge-tag" style="background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3);">⚪ Forno Normal</span>
+                        <span id="badge_oven_status" class="badge-tag" style="background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3);">Forno Normal</span>
                     </div>
                     <h3 id="res_title" style="font-size: 24px; font-weight: 900; margin-top: 4px;">Moonshine para Sickle</h3>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                     <button class="btn-action btn-copy" onclick="copyRecipeToClipboard()" id="btn_copy">
-                        <span>📋</span>
                         <span id="copy_btn_text">Copiar para o Jogo</span>
                     </button>
                     <button class="btn-action" onclick="generateAutomatically(true)">
-                        <span>🎲</span>
                         <span id="txt_btn_variation">Outra Variação</span>
                     </button>
                     <span id="txt_badge_accurate" class="badge-tag badge-green">✓ 100% Preciso</span>
@@ -917,11 +923,11 @@
 
             <div class="stats-row">
                 <div class="stat-box">
-                    <small id="txt_stat_cooker_lbl">Cooker (Fogão)</small>
+                    <small id="txt_stat_cooker_lbl">Cooker <span class="paren">(Fogão)</span></small>
                     <strong id="res_cooker">Oven (Forno)</strong>
                 </div>
                 <div class="stat-box">
-                    <small id="txt_stat_container_lbl">Container (Recipiente)</small>
+                    <small id="txt_stat_container_lbl">Container <span class="paren">(Recipiente)</span></small>
                     <strong id="res_container">Cauldron (Caldeirão)</strong>
                 </div>
                 <div class="stat-box">
@@ -940,7 +946,7 @@
             </div>
 
             <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(51, 65, 85, 0.6); font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-                <span id="res_prep_note">💡 <strong>Modo de Preparo:</strong> Coloque o Cauldron no Oven, adicione Água, Açúcar e os vegetais cortados conforme a lista.</span>
+                <span id="res_prep_note"><strong>Modo de Preparo:</strong> Coloque o Cauldron no Oven, adicione Água, Açúcar e os vegetais cortados conforme a lista.</span>
                 <span style="font-family: monospace; color: var(--text-main); font-weight: 700;"><span id="txt_proof_lbl">Prova:</span> <span id="res_math">Total mod 138 + Player = 41</span></span>
             </div>
         </div>
@@ -1026,8 +1032,8 @@
                 labelEn: "Oven (Normal)",
                 descPt: "Forno normal (+40 de base)",
                 descEn: "Normal oven (+40 base)",
-                badgePt: "⚪ Forno Normal",
-                badgeEn: "⚪ Normal Oven",
+                badgePt: "Forno Normal",
+                badgeEn: "Normal Oven",
                 shortPt: "Normal",
                 shortEn: "Normal"
             },
@@ -1037,8 +1043,8 @@
                 labelEn: "Rare Oven (+1)",
                 descPt: "Forno raro (+41 de base, +1 bônus)",
                 descEn: "Rare oven (+41 base, +1 bonus)",
-                badgePt: "🔵 Forno Raro (+1)",
-                badgeEn: "🔵 Rare Oven (+1)",
+                badgePt: "Forno Raro (+1)",
+                badgeEn: "Rare Oven (+1)",
                 shortPt: "Raro (+1)",
                 shortEn: "Rare (+1)"
             },
@@ -1048,8 +1054,8 @@
                 labelEn: "Supreme Oven (+2)",
                 descPt: "Forno supremo (+42 de base, +2 bônus)",
                 descEn: "Supreme oven (+42 base, +2 bonus)",
-                badgePt: "🟣 Forno Supremo (+2)",
-                badgeEn: "🟣 Supreme Oven (+2)",
+                badgePt: "Forno Supremo (+2)",
+                badgeEn: "Supreme Oven (+2)",
                 shortPt: "Supremo (+2)",
                 shortEn: "Supreme (+2)"
             }
@@ -1073,22 +1079,22 @@
                 target_label: "Selecione a afinidade que você quer no seu Moonshine:",
                 options_title: "Opções de Preparo & Ingredientes",
                 options_desc: "Ajuste os filtros abaixo para o gerador encontrar a receita ideal para o que você tem na sua despensa:",
-                oven_rarity_lbl: "🔥 Raridade do Forno (Oven Cooker):",
+                oven_rarity_lbl: "Raridade do Forno (Oven Cooker):",
                 btn_oven_normal: "Normal (+0) [Padrão]",
                 btn_oven_rare: "Rara (+1)",
                 btn_oven_supreme: "Suprema (+2)",
-                oven_hint: "💡 <em>O forno Raro adiciona +1 e o Supremo adiciona +2 no cozimento. O gerador recalcula os ingredientes para a afinidade bater 100% exata!</em>",
-                no_fried_title: "<span>🚫 NÃO usar \"Fried\" (Fritar)</span>",
+                oven_hint: "<em>O forno Raro adiciona +1 e o Supremo adiciona +2 no cozimento. O gerador recalcula os ingredientes para a afinidade bater 100% exata!</em>",
+                no_fried_title: "<span>NÃO usar \"Fried\" (Fritar)</span>",
                 no_fried_desc: "Gera receitas usando apenas cru (<strong>Whole</strong>) ou picado (<strong>Chopped</strong>). Evita ter que usar a frigideira para pré-fritar antes de misturar!",
-                min_cuts_title: "<span>🔪 Priorizar \"Whole\" (Menos Cortes)</span>",
+                min_cuts_title: "<span>Priorizar \"Whole\" (Menos Cortes)</span>",
                 min_cuts_desc: "Tenta usar a maior quantidade possível de vegetais inteiros, reduzindo a necessidade de usar a faca.",
-                veggies_lbl: "🥕 Vegetais que você tem disponíveis (clique para desmarcar se faltar algum):",
+                veggies_lbl: "Vegetais que você tem disponíveis (clique para desmarcar se faltar algum):",
                 mark_all: "Marcar Todos",
                 clear_all: "Limpar",
                 res_tag: "Receita Gerada",
                 badge_unique: "✓ Itens 100% Únicos",
                 badge_no_fried: "✓ Sem Fried",
-                badge_fried_allowed: "⚡ Fried Permitido",
+                badge_fried_allowed: "Fried Permitido",
                 copy_recipe: "Copiar para o Jogo",
                 copied: "✓ Copiado!",
                 copy_prompt: "Copie a receita abaixo:",
@@ -1100,13 +1106,13 @@
                 stat_status_val: "Perfeito (0 mod 138)",
                 ing_list_lbl: "Lista de Ingredientes Únicos & Cortes no Jogo:",
                 proof_lbl: "Prova:",
-                moonshine_title: "🌙 Moonshine",
+                moonshine_title: "Moonshine",
                 for_word: "para",
                 alerts: {
                     moonshine_min: "Atenção: Você precisa de pelo menos 4 vegetais disponíveis para gerar o Moonshine!",
                     no_solution: "Não encontramos uma combinação com esses filtros específicos. Tente desmarcar 'Priorizar Whole' ou marcar mais vegetais."
                 },
-                prep_note: (oven) => `💡 <strong>Modo de Preparo:</strong> Coloque o Cauldron no ${oven}, adicione Água, Açúcar e os vegetais cortados conforme a lista acima.`,
+                prep_note: (oven) => `<strong>Modo de Preparo:</strong> Coloque o Cauldron no ${oven}, adicione Água, Açúcar e os vegetais cortados conforme a lista acima.`,
                 clipboard_ing_header: "Ingredientes:"
             },
             en: {
@@ -1124,22 +1130,22 @@
                 target_label: "Select the affinity you want in your Moonshine:",
                 options_title: "Preparation Options & Ingredients",
                 options_desc: "Adjust the filters below so the generator finds the ideal recipe for what you have in your pantry:",
-                oven_rarity_lbl: "🔥 Oven Cooker Rarity:",
+                oven_rarity_lbl: "Oven Cooker Rarity:",
                 btn_oven_normal: "Normal (+0) [Default]",
                 btn_oven_rare: "Rare (+1)",
                 btn_oven_supreme: "Supreme (+2)",
-                oven_hint: "💡 <em>Rare oven adds +1 and Supreme adds +2 during cooking. The generator recalculates ingredients so the affinity matches 100% exact!</em>",
-                no_fried_title: "<span>🚫 DO NOT use \"Fried\"</span>",
+                oven_hint: "<em>Rare oven adds +1 and Supreme adds +2 during cooking. The generator recalculates ingredients so the affinity matches 100% exact!</em>",
+                no_fried_title: "<span>DO NOT use \"Fried\"</span>",
                 no_fried_desc: "Generates recipes using only raw (<strong>Whole</strong>) or cut (<strong>Chopped</strong>). Avoids having to use a frying pan before mixing!",
-                min_cuts_title: "<span>🔪 Prioritize \"Whole\" (Fewer Cuts)</span>",
+                min_cuts_title: "<span>Prioritize \"Whole\" (Fewer Cuts)</span>",
                 min_cuts_desc: "Tries to use as many whole vegetables as possible, reducing the need to use a knife.",
-                veggies_lbl: "🥕 Vegetables you have available (click to uncheck any you are missing):",
+                veggies_lbl: "Vegetables you have available (click to uncheck any you are missing):",
                 mark_all: "Select All",
                 clear_all: "Clear All",
                 res_tag: "Generated Recipe",
                 badge_unique: "✓ 100% Unique Items",
                 badge_no_fried: "✓ No Fried",
-                badge_fried_allowed: "⚡ Fried Allowed",
+                badge_fried_allowed: "Fried Allowed",
                 copy_recipe: "Copy for Game",
                 copied: "✓ Copied!",
                 copy_prompt: "Copy the recipe below:",
@@ -1151,13 +1157,13 @@
                 stat_status_val: "Perfect (0 mod 138)",
                 ing_list_lbl: "List of Unique Ingredients & In-Game Cuts:",
                 proof_lbl: "Proof:",
-                moonshine_title: "🌙 Moonshine",
+                moonshine_title: "Moonshine",
                 for_word: "for",
                 alerts: {
                     moonshine_min: "Notice: You need at least 4 available vegetables to generate Moonshine!",
                     no_solution: "Could not find a combination with these specific filters. Try unchecking 'Prioritize Whole' or selecting more vegetables."
                 },
-                prep_note: (oven) => `💡 <strong>Instructions:</strong> Place the Cauldron in the ${oven}, add Water, Sugar and cut vegetables as listed above.`,
+                prep_note: (oven) => `<strong>Instructions:</strong> Place the Cauldron in the ${oven}, add Water, Sugar and cut vegetables as listed above.`,
                 clipboard_ing_header: "Ingredients:"
             }
         };
@@ -1175,6 +1181,14 @@
                     opt.text = `${name} (#${opt.value})`;
                 }
             });
+        }
+
+        // Wrap descriptive text inside parentheses in a smaller font
+        function smallParens(html) {
+            if (typeof html !== 'string') return html;
+            return html
+                .replace(/\(<strong>([^()<]*)<\/strong>\)/g, '(<span class="paren"><strong>$1</strong></span>)')
+                .replace(/\(([^()<]*[A-Za-zÀ-ÿ][^()<]*)\)/g, '<span class="paren">($1)</span>');
         }
 
         function setLanguage(lang) {
@@ -1202,7 +1216,7 @@
             const ovenShort = (lang === 'pt') ? OVEN_CONFIG[selectedOvenRarity]?.shortPt : OVEN_CONFIG[selectedOvenRarity]?.shortEn;
             const sameOvenSpan = document.getElementById('txt_same_oven_span');
             if (sameOvenSpan) {
-                sameOvenSpan.innerHTML = `${t.same_oven_prefix} (<span id="test_oven_name">${ovenShort || 'Normal'}</span>)?`;
+                sameOvenSpan.innerHTML = `${smallParens(t.same_oven_prefix)} (<span id="test_oven_name" class="paren">${ovenShort || 'Normal'}</span>)?`;
             }
 
             if (document.getElementById('txt_player_badge_lbl')) document.getElementById('txt_player_badge_lbl').innerText = t.player_badge_lbl;
@@ -1211,11 +1225,11 @@
 
             if (document.getElementById('txt_options_title')) document.getElementById('txt_options_title').innerText = t.options_title;
             if (document.getElementById('txt_options_desc')) document.getElementById('txt_options_desc').innerText = t.options_desc;
-            if (document.getElementById('txt_oven_rarity_lbl')) document.getElementById('txt_oven_rarity_lbl').innerText = t.oven_rarity_lbl;
+            if (document.getElementById('txt_oven_rarity_lbl')) document.getElementById('txt_oven_rarity_lbl').innerHTML = smallParens(t.oven_rarity_lbl);
 
             const ovenDesc = document.getElementById('oven_desc_badge');
             if (ovenDesc) {
-                ovenDesc.innerText = (lang === 'pt') ? OVEN_CONFIG[selectedOvenRarity]?.descPt : OVEN_CONFIG[selectedOvenRarity]?.descEn;
+                ovenDesc.innerHTML = smallParens((lang === 'pt') ? OVEN_CONFIG[selectedOvenRarity]?.descPt : OVEN_CONFIG[selectedOvenRarity]?.descEn);
             }
 
             if (document.getElementById('txt_btn_oven_normal')) document.getElementById('txt_btn_oven_normal').innerText = t.btn_oven_normal;
@@ -1223,12 +1237,12 @@
             if (document.getElementById('txt_btn_oven_supreme')) document.getElementById('txt_btn_oven_supreme').innerText = t.btn_oven_supreme;
             if (document.getElementById('txt_oven_hint')) document.getElementById('txt_oven_hint').innerHTML = t.oven_hint;
 
-            if (document.getElementById('txt_no_fried_title')) document.getElementById('txt_no_fried_title').innerHTML = t.no_fried_title;
-            if (document.getElementById('txt_no_fried_desc')) document.getElementById('txt_no_fried_desc').innerHTML = t.no_fried_desc;
-            if (document.getElementById('txt_min_cuts_title')) document.getElementById('txt_min_cuts_title').innerHTML = t.min_cuts_title;
-            if (document.getElementById('txt_min_cuts_desc')) document.getElementById('txt_min_cuts_desc').innerHTML = t.min_cuts_desc;
+            if (document.getElementById('txt_no_fried_title')) document.getElementById('txt_no_fried_title').innerHTML = smallParens(t.no_fried_title);
+            if (document.getElementById('txt_no_fried_desc')) document.getElementById('txt_no_fried_desc').innerHTML = smallParens(t.no_fried_desc);
+            if (document.getElementById('txt_min_cuts_title')) document.getElementById('txt_min_cuts_title').innerHTML = smallParens(t.min_cuts_title);
+            if (document.getElementById('txt_min_cuts_desc')) document.getElementById('txt_min_cuts_desc').innerHTML = smallParens(t.min_cuts_desc);
 
-            if (document.getElementById('txt_veggies_lbl')) document.getElementById('txt_veggies_lbl').innerText = t.veggies_lbl;
+            if (document.getElementById('txt_veggies_lbl')) document.getElementById('txt_veggies_lbl').innerHTML = smallParens(t.veggies_lbl);
             if (document.getElementById('btn_mark_all')) document.getElementById('btn_mark_all').innerText = t.mark_all;
             if (document.getElementById('btn_clear_all')) document.getElementById('btn_clear_all').innerText = t.clear_all;
 
@@ -1238,9 +1252,9 @@
             if (document.getElementById('txt_btn_variation')) document.getElementById('txt_btn_variation').innerText = t.btn_variation;
             if (document.getElementById('txt_badge_accurate')) document.getElementById('txt_badge_accurate').innerText = t.badge_accurate;
 
-            if (document.getElementById('txt_stat_cooker_lbl')) document.getElementById('txt_stat_cooker_lbl').innerText = t.stat_cooker_lbl;
-            if (document.getElementById('txt_stat_container_lbl')) document.getElementById('txt_stat_container_lbl').innerText = t.stat_container_lbl;
-            if (document.getElementById('txt_stat_status_lbl')) document.getElementById('txt_stat_status_lbl').innerText = t.stat_status_lbl;
+            if (document.getElementById('txt_stat_cooker_lbl')) document.getElementById('txt_stat_cooker_lbl').innerHTML = smallParens(t.stat_cooker_lbl);
+            if (document.getElementById('txt_stat_container_lbl')) document.getElementById('txt_stat_container_lbl').innerHTML = smallParens(t.stat_container_lbl);
+            if (document.getElementById('txt_stat_status_lbl')) document.getElementById('txt_stat_status_lbl').innerHTML = smallParens(t.stat_status_lbl);
             if (document.getElementById('txt_stat_status_val')) document.getElementById('txt_stat_status_val').innerText = t.stat_status_val;
             if (document.getElementById('txt_ing_list_lbl')) document.getElementById('txt_ing_list_lbl').innerText = t.ing_list_lbl;
             if (document.getElementById('txt_proof_lbl')) document.getElementById('txt_proof_lbl').innerText = t.proof_lbl;
@@ -1254,7 +1268,9 @@
             document.documentElement.setAttribute('data-theme', theme);
             const toggle = document.getElementById('themeToggle');
             if (toggle) {
-                toggle.textContent = theme === 'light' ? '☀️' : '🌙';
+                toggle.innerHTML = theme === 'light'
+                    ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>'
+                    : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
             }
             try {
                 localStorage.setItem('wurm-affinity-theme', theme);
@@ -1363,7 +1379,7 @@
 
             const ovenDesc = document.getElementById('oven_desc_badge');
             if (ovenDesc) {
-                ovenDesc.innerText = (currentLang === 'pt') ? OVEN_CONFIG[rarity]?.descPt : OVEN_CONFIG[rarity]?.descEn;
+                ovenDesc.innerHTML = smallParens((currentLang === 'pt') ? OVEN_CONFIG[rarity]?.descPt : OVEN_CONFIG[rarity]?.descEn);
             }
 
             const testOvenName = document.getElementById('test_oven_name');
@@ -1491,8 +1507,8 @@
                 total: result.total
             };
 
-            document.getElementById('res_cooker').innerText = result.cooker;
-            document.getElementById('res_container').innerText = result.container;
+            document.getElementById('res_cooker').innerHTML = smallParens(result.cooker);
+            document.getElementById('res_container').innerHTML = smallParens(result.container);
             document.getElementById('res_math').innerText = `(${result.total} + ${playerNumber}) mod 138 = ${(result.total + playerNumber) % 138} = ${targetId} (${targetSkill.name})`;
 
             const ul = document.getElementById('res_ingredients');
